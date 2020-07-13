@@ -34,7 +34,7 @@ class Pet extends Model
     }
 
     //retrieve a specific pet
-    public static function getPetById(string $pet_id) {
+    public static function getPetById($pet_id) {
         $pet = self::findOrfail($pet_id);
         return $pet;
     }
