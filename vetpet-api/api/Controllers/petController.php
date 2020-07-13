@@ -23,8 +23,8 @@ class  PetController{
 
     //view a pet
     public function view(Request $request, Response $response, array $args) {
-        $number = $args['number'];
-        $results = Pet::getPetNumber($number);
+        $pet_id = $args['pet_id'];
+        $results = Pet::getPetNumber($pet_id);
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
     }
 }
