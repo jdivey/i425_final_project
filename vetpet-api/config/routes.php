@@ -20,7 +20,7 @@ $app->group('/api/v1', function () {
     //the pet group
     $this->group('/pets', function () {
         $this->get('', "Pet:index");
-        $this->get('/{id}', 'Pet:view');
+        $this->get('/{pet_id}', 'Pet:view');
     });
 
     //the customer group
