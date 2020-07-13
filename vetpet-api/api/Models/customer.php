@@ -17,7 +17,7 @@ class customer extends Model
     protected $table = "customers";
 
     //the primary key of the table
-    protected $primaryKey = "id";
+    protected $primaryKey = "customer_id";
 
     //the key is non-numeric
     public $implementing = false;
@@ -35,8 +35,8 @@ class customer extends Model
     }
 
     //view a specific customer by id
-    public static function getCustomerById(string $id) {
-        $customer = self::findOrfail($id);
+    public static function getCustomerId($customer_id) {
+        $customer = self::findOrfail($customer_id);
         return $customer;
     }
 }

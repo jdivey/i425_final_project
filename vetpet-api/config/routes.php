@@ -26,6 +26,6 @@ $app->group('/api/v1', function () {
     //the customer group
     $this->group('/customers', function () {
         $this->get('', 'Customer:index');
-        $this->get('/{number}', 'Customer:view');
+        $this->get('/{customer_id}', 'Customer:view');
     });
 });

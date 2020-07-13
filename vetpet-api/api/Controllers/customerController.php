@@ -23,8 +23,8 @@ class  CustomerController{
 
     //view a customer
     public function view(Request $request, Response $response, array $args) {
-        $number = $args['number'];
-        $results = Pet::getCustomerNumber($number);
+        $customer_id = $args['customer_id'];
+        $results = Customer::getCustomerId($customer_id);
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
     }
 }
