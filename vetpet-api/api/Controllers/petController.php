@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 
 class  PetController{
-    //list all courses
+    //list all pets
     public function index(Request $request, Response $response, array $args) {
         $results = Pet::getPets();
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);

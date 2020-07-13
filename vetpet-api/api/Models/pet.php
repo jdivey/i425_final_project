@@ -28,7 +28,7 @@ class Pet extends Model
     public $timestamps = false;
 
     //retrieve all pets
-    public static function Pets() {
+    public static function getPets() {
         $courses = self::all();
         return $courses;
     }
