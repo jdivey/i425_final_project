@@ -1,30 +1,30 @@
 <?php
 /**
  * Author: Jacob Ivey
- * Date: 7/9/2020
- * File: courseController.php
+ * Date: 7/13/2020
+ * File: customerController.php
  * Description:
  */
 
 namespace VetPetAPI\Controllers;
 
-use VetPetAPI\Models\Pet;
+
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use VetPetAPI\Models\Customer;
 
-
-class  PetController{
-    //list all courses
+class  CustomerController{
+    //list all customers
     public function index(Request $request, Response $response, array $args) {
-        $results = Pet::getPets();
+        $results = Customer::getCustomers();
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
 
     }
 
-    //view a pet
+    //view a customer
     public function view(Request $request, Response $response, array $args) {
         $number = $args['number'];
-        $results = Pet::getPetNumber($number);
+        $results = Pet::getCustomerNumber($number);
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
     }
 }

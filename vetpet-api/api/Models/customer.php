@@ -1,8 +1,8 @@
 <?php
 /**
  * Author: Jacob Ivey
- * Date: 7/12/2020
- * File: pet.php
+ * Date: 7/13/2020
+ * File: customer.php
  * Description:
  */
 
@@ -10,13 +10,14 @@ namespace VetPetAPI\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pet extends Model
+
+class customer extends Model
 {
     //the table associated with this model
-    protected $table = "pets";
+    protected $table = "customers";
 
     //the primary key of the table
-    protected $primaryKey = "number";
+    protected $primaryKey = "id";
 
     //the key is non-numeric
     public $implementing = false;
@@ -27,16 +28,15 @@ class Pet extends Model
     //if the created at and updated at columns are not used
     public $timestamps = false;
 
-    //retrieve all pets
-    public static function Pets() {
-        $courses = self::all();
-        return $courses;
+    //retrieve all customers
+    public static function getCustomers() {
+        $customers = self::all();
+        return $customers;
     }
 
-    //retrieve a specific pet
-    public static function getPetByNumber(string $number) {
-        $pet = self::findOrfail($number);
-        return $pet;
+    //view a specific customer by id
+    public static function getCustomerById(string $id) {
+        $customer = self::findOrfail($id);
+        return $customer;
     }
-
 }
