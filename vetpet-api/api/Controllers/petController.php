@@ -24,7 +24,7 @@ class  PetController{
     //view a pet
     public function view(Request $request, Response $response, array $args) {
         $pet_id = $args['pet_id'];
-        $results = Pet::getPetNumber($pet_id);
+        $results = Pet::getPetById($pet_id);
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
     }
 }

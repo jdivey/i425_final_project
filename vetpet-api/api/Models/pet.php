@@ -16,7 +16,7 @@ class Pet extends Model
     protected $table = "pets";
 
     //the primary key of the table
-    protected $primaryKey = "number";
+    protected $primaryKey = "pet_id";
 
     //the key is non-numeric
     public $implementing = false;
@@ -29,13 +29,13 @@ class Pet extends Model
 
     //retrieve all pets
     public static function getPets() {
-        $courses = self::all();
-        return $courses;
+        $pets = self::all();
+        return $pets;
     }
 
     //retrieve a specific pet
-    public static function getPetByNumber(string $number) {
-        $pet = self::findOrfail($number);
+    public static function getPetById(string $pet_id) {
+        $pet = self::findOrfail($pet_id);
         return $pet;
     }
 
