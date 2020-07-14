@@ -15,7 +15,7 @@ $app->get('/api/hello/{name}', function ($request, $response, $args) {
     return $response->write("Hello ". $args['name']);
 });
 
-//route group
+//route pet group
 $app->group('/api/v1', function () {
     //the pet group
     $this->group('/pets', function () {
@@ -27,5 +27,11 @@ $app->group('/api/v1', function () {
     $this->group('/customers', function () {
         $this->get('', 'Customer:index');
         $this->get('/{customer_id}', 'Customer:view');
+    });
+
+    //the vet group
+    $this->group('/vets', function () {
+        $this->get('', 'Vet:index');
+        $this->get('/{vet_id}', 'Vet:view');
     });
 });

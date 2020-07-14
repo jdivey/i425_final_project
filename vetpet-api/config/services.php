@@ -8,6 +8,7 @@
 
 use VetPetAPI\Controllers\PetController;
 use VetPetAPI\Controllers\CustomerController;
+use VetPetAPI\Controllers\VetController;
 
 //register controllers with the DIC
 $container['Pet'] = function ($c) {
@@ -16,4 +17,8 @@ $container['Pet'] = function ($c) {
 
 $container['Customer'] = function ($c) {
     return new CustomerController();
+};
+
+$container['Vet'] = function ($c) {
+    return new VetController();
 };
