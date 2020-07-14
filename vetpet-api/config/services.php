@@ -9,6 +9,7 @@
 use VetPetAPI\Controllers\PetController;
 use VetPetAPI\Controllers\CustomerController;
 use VetPetAPI\Controllers\VetController;
+use VetPetAPI\Controllers\Appointment_statusController;
 
 //register controllers with the DIC
 $container['Pet'] = function ($c) {
