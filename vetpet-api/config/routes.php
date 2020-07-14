@@ -34,4 +34,10 @@ $app->group('/api/v1', function () {
         $this->get('', 'Vet:index');
         $this->get('/{vet_id}', 'Vet:view');
     });
+
+    //the appointment group
+    $this->group('/appointments', function () {
+        $this->get('', 'Appointment:index');
+        $this->get('/{appointment_id}', 'Appointment:view');
+    });
 });

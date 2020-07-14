@@ -22,3 +22,7 @@ $container['Customer'] = function ($c) {
 $container['Vet'] = function ($c) {
     return new VetController();
 };
+
+$container['Appointment'] = function ($c) {
+    return new Appointment_statusController();
+};
