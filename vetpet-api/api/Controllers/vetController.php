@@ -24,7 +24,7 @@ class  VetController{
     //view a vet
     public function view(Request $request, Response $response, array $args) {
         $vet_id = $args['vet_id'];
-        $results = Vet::getPetById($vet_id);
+        $results = Vet::getVetById($vet_id);
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
     }
 }
