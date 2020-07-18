@@ -21,6 +21,9 @@ $app->group('/api/v1', function () {
     $this->group('/pets', function () {
         $this->get('', "Pet:index");
         $this->get('/{pet_id}', 'Pet:view');
+        $this->post('', 'Pet:create');
+        $this->put('/{pet_id}', 'Pet:update');
+        $this->delete('/{pet_id}', 'Pet:delete');
     });
 
     //the customer group

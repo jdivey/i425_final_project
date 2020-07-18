@@ -42,7 +42,7 @@ class Vet extends Model
     //search for a vet
     public static function searchVets($term) {
         if (is_numeric($term)) {
-            $query = self::where('gpa', '>=', $term);
+
         }else{
             $query = self::where('vet_id', 'like', "%$term%")
                 ->orWhere('first_name', 'like', "%$term%")
