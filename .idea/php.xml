@@ -19,6 +19,9 @@
       <path value="$PROJECT_DIR$/vetpet-api/vendor/illuminate/contracts" />
       <path value="$PROJECT_DIR$/vetpet-api/vendor/illuminate/database" />
       <path value="$PROJECT_DIR$/vetpet-api/vendor/illuminate/support" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/respect/stringifier" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/respect/validation" />
     </include_path>
   </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7" />
 </project>

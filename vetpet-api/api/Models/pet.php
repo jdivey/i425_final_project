@@ -57,4 +57,54 @@ class Pet extends Model
         return $query->get();
     }
 
+    //insert new pet
+    public static function createPet($request) {
+        //retrieve parameters from request body
+        $params = $request->getParsedBody();
+
+        //create a new pet instance
+        $pet = new Pet();
+
+        //set the pet's attributes
+        foreach ($params as $field => $value) {
+
+            $pet->$field = $value;
+        }
+
+        //insert the pet into the database
+        $pet->save();
+
+        return $pet;
+    }
+
+    //update a pet
+    public static function updatePet($request) {
+        //retrieve parameters from request body
+        $params = $request->getParsedBody();
+
+        //retrieve id from the request body
+        $pet_id = $request->getAttribute('pet_id');
+        $pet = self::find($pet_id);
+        if (!$pet) {
+            return false;
+        }
+
+        //update attributes of the pet
+        foreach ($params as $field => $value) {
+            $pet->$field = $value;
+        }
+
+        //save the pet into the database
+        $pet->save();
+        return $pet;
+    }
+
+    //delete a pet
+    public static function deletePet($request) {
+        //retrieve the id from the request
+        $pet_id = $request->getAttribute('pet_id');
+        $pet = self::find($pet_id);
+        return($pet ? $pet->delete() : $pet);
+    }
+
 }
