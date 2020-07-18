@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/composer" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/slim/slim" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/pimple/pimple" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/illuminate/container" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/illuminate/database" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/illuminate/support" />
+    </include_path>
+  </component>
+</project>

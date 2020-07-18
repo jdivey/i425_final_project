@@ -39,4 +39,18 @@ class Appointment_status extends Model
         $appointment = self::findOrfail($appointment_id);
         return $appointment;
     }
+
+    //search for an appointment
+    public static function searchAppointments($term) {
+        if (is_numeric($term)) {
+            $query = self::where('gpa', '>=', $term);
+        }else{
+            $query = self::where('appointment_id', 'like', "%$term%")
+                ->orWhere('pet_id', 'like', "%$term%")
+                ->orWhere('appointment status', 'like', "%$term%")
+                ->orWhere('appointment_type', 'like', "%$term%");
+        }
+
+        return $query->get();
+    }
 }

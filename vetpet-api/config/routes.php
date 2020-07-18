@@ -33,6 +33,9 @@ $app->group('/api/v1', function () {
     $this->group('/vets', function () {
         $this->get('', 'Vet:index');
         $this->get('/{vet_id}', 'Vet:view');
+        $this->post('', 'Vet:create');
+        $this->put('/{vet_id}', 'Vet:update');
+        $this->delete('/{vet_id}', 'Vet:delete');
     });
 
     //the appointment group

@@ -39,4 +39,17 @@ class customer extends Model
         $customer = self::findOrfail($customer_id);
         return $customer;
     }
+
+    //search for a customer
+    public static function searchCustomers($term) {
+        if (is_numeric($term)) {
+            $query = self::where('gpa', '>=', $term);
+        }else{
+            $query = self::where('customer_id', 'like', "%$term%")
+                ->orWhere('first_name', 'like', "%$term%")
+                ->orWhere('last_name', 'like', "%$term%");
+        }
+
+        return $query->get();
+    }
 }

@@ -16,7 +16,15 @@ use VetPetAPI\Models\Customer;
 class  CustomerController{
     //list all customers
     public function index(Request $request, Response $response, array $args) {
-        $results = Customer::getCustomers();
+        //get query string variables from url
+        $params = $request->getQueryParams();
+        $term = array_key_exists('q', $params) ? $params['q'] : null;
+
+        if (!is_null($term)) {
+            $results = Customer::searchCustomers($term);
+        }else{
+            $results = Customer::getCustomers();
+        }
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
 
     }

@@ -39,4 +39,67 @@ class Vet extends Model
         return $vet;
     }
 
+    //search for a vet
+    public static function searchVets($term) {
+        if (is_numeric($term)) {
+            $query = self::where('gpa', '>=', $term);
+        }else{
+            $query = self::where('vet_id', 'like', "%$term%")
+                ->orWhere('first_name', 'like', "%$term%")
+                ->orWhere('last_name', 'like', "%$term%");
+        }
+
+        return $query->get();
+    }
+
+    //insert new vet
+    public static function createVet($request) {
+        //retrieve parameters from request body
+        $params = $request->getParsedBody();
+
+        //create a new vet instance
+        $vet = new Vet();
+
+        //set the vet's attributes
+        foreach ($params as $field => $value) {
+            //echo $field, ':', $value;
+            $vet->$field = $value;
+        }
+
+        //insert the vet into the database
+        $vet->save();
+
+        return $vet;
+    }
+
+    //update a vet
+    public static function updateVet($request) {
+        //retrieve parameters from request body
+        $params = $request->getParsedBody();
+
+        //retrieve id from the request body
+        $vet_id = $request->getAttribute('vet_id');
+        $vet = self::find($vet_id);
+        if (!$vet) {
+            return false;
+        }
+
+        //update attributes of the vet
+        foreach ($params as $field => $value) {
+            $vet->$field = $value;
+        }
+
+        //save the student into the database
+        $vet->save();
+        return $vet;
+    }
+
+    //delete a vet
+    public static function deleteVet($request) {
+        //retrieve the id from the request
+        $vet_id = $request->getAttribute('vet_id');
+        $vet = self::find($vet_id);
+        return($vet ? $vet->delete() : $vet);
+    }
+
 }

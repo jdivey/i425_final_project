@@ -16,7 +16,15 @@ use Psr\Http\Message\ResponseInterface as Response;
 class  PetController{
     //list all pets
     public function index(Request $request, Response $response, array $args) {
-        $results = Pet::getPets();
+        //get query string variables from url
+        $params = $request->getQueryParams();
+        $term = array_key_exists('q', $params) ? $params['q'] : null;
+
+        if (!is_null($term)) {
+            $results = Pet::searchPets($term);
+        }else{
+            $results = Pet::getPets();
+        }
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
 
     }

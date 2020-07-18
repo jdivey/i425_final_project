@@ -16,7 +16,15 @@ use VetPetAPI\Models\Appointment_status;
 class  Appointment_statusController{
     //list all appointments
     public function index(Request $request, Response $response, array $args) {
-        $results = Appointment_status::getAppointments();
+        //get query string variables from url
+        $params = $request->getQueryParams();
+        $term = array_key_exists('q', $params) ? $params['q'] : null;
+
+        if (!is_null($term)) {
+            $results = Appointment_status::searchAppointments($term);
+        }else{
+            $results = Appointment_status::getAppointments();
+        }
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
 
     }
