@@ -35,4 +35,59 @@ class  Appointment_statusController{
         $results = Appointment_status::getAppointmentId($appointment_id);
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
     }
+
+    //create an appointment
+    public function create(Request $request, Response $response, array $args) {
+        //validate the request
+        $validation = Validator::validateAppointment($request);
+
+        if (!$validation) {
+            $results = [
+                'status' => "Validation failed",
+                'errors' => Validator::getErrors()
+            ];
+
+            return $response->withJson($results, 500, JSON_PRETTY_PRINT);
+        }
+
+        //insert a new appointment
+        $appointment = Appointment_status::createAppointment($request);
+
+        $results = [
+            'status' => "Appointment created",
+            'data' => $appointment
+        ];
+        return $response->withJson($results, 200, JSON_PRETTY_PRINT);
+    }
+
+    //update an appointment
+    public function update(Request $request, Response $response, array $args) {
+        //validate the request
+        $validation = Validator::validateAppointment($request);
+
+        //if validation failed
+        if(!$validation) {
+            $results['status'] = "Validation: failed";
+            $results['errors'] = Validator::getErrors();
+            return $response->withJson($results, 500, JSON_PRETTY_PRINT);
+        }
+
+        $appointment = Appointment_status::updateAppointment($request);
+        $status = $appointment ? "Appointment has been updated" : "Appointment cannot be updated";
+        $status_code = $appointment ? 200 : 500;
+        $results['status'] = $status;
+        if ($appointment) {
+            $results['data'] = $appointment;
+        }
+        return $response->withJson($results, $status_code, JSON_PRETTY_PRINT);
+    }
+
+    //method to delete an appointment
+    public function delete(Request $request, Response $response, array $args) {
+        $customer = Customer::deleteCustomer($request);
+        $status = $customer ? "Customer has been deleted" : "Customer cannot be deleted";
+        $status_code = $customer ? 200 : 500;
+        $results = ['status' => $status];
+        return $response->withJson($results, $status_code, JSON_PRETTY_PRINT);
+    }
 }

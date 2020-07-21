@@ -11,6 +11,7 @@ namespace VetPetAPI\Controllers;
 use VetPetAPI\Models\Pet;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use VetPetAPI\Validation\Validator;
 
 
 class  PetController{
@@ -39,7 +40,7 @@ class  PetController{
     //create a pet
     public function create(Request $request, Response $response, array $args) {
         //validate the request
-        $validation = Validator::validateVet($request);
+        $validation = Validator::validatePet($request);
 
         if (!$validation) {
             $results = [
@@ -54,7 +55,7 @@ class  PetController{
         $pet = Pet::createPet($request);
 
         $results = [
-            'status' => "Student created",
+            'status' => "Pet created",
             'data' => $pet
         ];
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);

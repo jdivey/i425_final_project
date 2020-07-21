@@ -11,6 +11,7 @@ namespace VetPetAPI\Controllers;
 use VetPetAPI\Models\Vet;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use VetPetAPI\Validation\Validator;
 
 
 class  VetController{
@@ -54,7 +55,7 @@ class  VetController{
         $vet = Vet::createVet($request);
 
         $results = [
-            'status' => "Student created",
+            'status' => "Vet created",
             'data' => $vet
         ];
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);

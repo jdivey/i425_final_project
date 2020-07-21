@@ -30,6 +30,9 @@ $app->group('/api/v1', function () {
     $this->group('/customers', function () {
         $this->get('', 'Customer:index');
         $this->get('/{customer_id}', 'Customer:view');
+        $this->post('', 'Customer:create');
+        $this->put('/{customer_id}', 'Customer:update');
+        $this->delete('/{customer_id}', 'Customer:delete');
     });
 
     //the vet group

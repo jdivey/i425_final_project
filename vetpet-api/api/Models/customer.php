@@ -52,4 +52,54 @@ class customer extends Model
 
         return $query->get();
     }
+
+    //insert new customer
+    public static function createCustomer($request) {
+        //retrieve parameters from request body
+        $params = $request->getParsedBody();
+
+        //create a new customer instance
+        $customer = new Customer();
+
+        //set the customer's attributes
+        foreach ($params as $field => $value) {
+            //echo $field, ':', $value;
+            $customer->$field = $value;
+        }
+
+        //insert the customer into the database
+        $customer->save();
+
+        return $customer;
+    }
+
+    //update a customer
+    public static function updateCustomer($request) {
+        //retrieve parameters from request body
+        $params = $request->getParsedBody();
+
+        //retrieve id from the request body
+        $customer_id = $request->getAttribute('customer_id');
+        $customer = self::find($customer_id);
+        if (!$customer) {
+            return false;
+        }
+
+        //update attributes of the customer
+        foreach ($params as $field => $value) {
+            $customer->$field = $value;
+        }
+
+        //save the customer into the database
+        $customer->save();
+        return $customer;
+    }
+
+    //delete a customer
+    public static function deleteCustomer($request) {
+        //retrieve the id from the request
+        $customer_id = $request->getAttribute('customer_id');
+        $customer = self::find($customer_id);
+        return($customer ? $customer->delete() : $customer);
+    }
 }

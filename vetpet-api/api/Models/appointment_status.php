@@ -53,4 +53,54 @@ class Appointment_status extends Model
 
         return $query->get();
     }
+
+    //insert new appointment
+    public static function createAppointment($request) {
+        //retrieve parameters from request body
+        $params = $request->getParsedBody();
+
+        //create a new appointment instance
+        $appointment = new Appointment_status();
+
+        //set the appointment's attributes
+        foreach ($params as $field => $value) {
+
+            $appointment->$field = $value;
+        }
+
+        //insert the appointment into the database
+        $appointment->save();
+
+        return $appointment;
+    }
+
+    //update an appointment
+    public static function updateAppointment($request) {
+        //retrieve parameters from request body
+        $params = $request->getParsedBody();
+
+        //retrieve id from the request body
+        $appointment_id = $request->getAttribute('appointment_id');
+        $appointment = self::find($appointment_id);
+        if (!$appointment) {
+            return false;
+        }
+
+        //update attributes of the appointment
+        foreach ($params as $field => $value) {
+            $appointment->$field = $value;
+        }
+
+        //save the customer into the database
+        $appointment->save();
+        return $appointment;
+    }
+
+    //delete an appointment
+    public static function deleteAppointment($request) {
+        //retrieve the id from the request
+        $appointment_id = $request->getAttribute('appointment_id');
+        $appointment = self::find($appointment_id);
+        return($appointment ? $appointment->delete() : $appointment);
+    }
 }
