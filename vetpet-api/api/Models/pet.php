@@ -42,8 +42,7 @@ class Pet extends Model
     //search for a pet
     public static function searchPets($term) {
         if (is_numeric($term)) {
-                $query = self::where('owner_id', '>=', $term)
-                    ->orWhere('vet_id', '>=', $term);
+                $query = self::where('owner_id', '>=', $term);
         }else{
             $query = self::where('pet_id', '>=', $term)
                 ->orWhere('pet_breed', 'like', "%$term%")
