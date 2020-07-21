@@ -43,11 +43,10 @@ class Appointment_status extends Model
     //search for an appointment
     public static function searchAppointments($term) {
         if (is_numeric($term)) {
-            $query = self::where('gpa', '>=', $term);
+            $query = self::where('appointment_id', '=', "$term");
         }else{
-            $query = self::where('appointment_id', 'like', "%$term%")
-                ->orWhere('pet_id', 'like', "%$term%")
-                ->orWhere('appointment status', 'like', "%$term%")
+            $query = self::where('pet_id', 'like', "%$term%")
+                ->orWhere('appointment_status', 'like', "%$term%")
                 ->orWhere('appointment_type', 'like', "%$term%");
         }
 
@@ -91,7 +90,7 @@ class Appointment_status extends Model
             $appointment->$field = $value;
         }
 
-        //save the customer into the database
+        //save the appointment into the database
         $appointment->save();
         return $appointment;
     }

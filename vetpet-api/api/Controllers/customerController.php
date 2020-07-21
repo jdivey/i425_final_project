@@ -12,6 +12,7 @@ namespace VetPetAPI\Controllers;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use VetPetAPI\Models\Customer;
+use VetPetAPI\Validation\Validator;
 
 class  CustomerController{
     //list all customers

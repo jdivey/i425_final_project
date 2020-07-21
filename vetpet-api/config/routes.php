@@ -48,5 +48,8 @@ $app->group('/api/v1', function () {
     $this->group('/appointments', function () {
         $this->get('', 'Appointment:index');
         $this->get('/{appointment_id}', 'Appointment:view');
+        $this->post('', 'Appointment:create');
+        $this->put('/{appointment_id}', 'Appointment:update');
+        $this->delete('/{appointment_id}', 'Appointment:delete');
     });
 });

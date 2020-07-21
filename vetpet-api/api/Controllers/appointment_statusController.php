@@ -12,6 +12,7 @@ namespace VetPetAPI\Controllers;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use VetPetAPI\Models\Appointment_status;
+use VetPetAPI\Validation\Validator;
 
 class  Appointment_statusController{
     //list all appointments
@@ -84,9 +85,9 @@ class  Appointment_statusController{
 
     //method to delete an appointment
     public function delete(Request $request, Response $response, array $args) {
-        $customer = Customer::deleteCustomer($request);
-        $status = $customer ? "Customer has been deleted" : "Customer cannot be deleted";
-        $status_code = $customer ? 200 : 500;
+        $appointment = Appointment_status::deleteAppointment($request);
+        $status = $appointment ? "Appointment has been deleted" : "Appointment cannot be deleted";
+        $status_code = $appointment ? 200 : 500;
         $results = ['status' => $status];
         return $response->withJson($results, $status_code, JSON_PRETTY_PRINT);
     }

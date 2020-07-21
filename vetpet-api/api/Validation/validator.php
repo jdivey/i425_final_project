@@ -65,6 +65,19 @@
             return self::validate($request, $rules);
         }
 
+        //validate attributes of an appointment object
+        public static function validateAppointment($request) {
+            //define all the Validation rules
+            $rules = [
+                'appointment_id' => v::notEmpty()->alnum()->length(9, 9),
+                'pet_id' => v::notEmpty()->alnum()->length(9, 9),
+                'appointment_status' => v::alnum(' '),
+                'appointment_type' =>  v::alnum(' ')
+            ];
+
+            return self::validate($request, $rules);
+        }
+
         //return the errors in an array
         public static function getErrors() {
             return self::$errors;
