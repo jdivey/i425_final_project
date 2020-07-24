@@ -10,7 +10,7 @@ namespace VetPetAPI\Authentication;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use PetVetAPI\Models\User;
+use VetPetAPI\Models\User;
 
 class JWTAuthenticator {
     public function __invoke(Request $request, Response $response, $next) {

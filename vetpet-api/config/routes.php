@@ -9,6 +9,7 @@
 //define app routes
 use VetPetAPI\Authentication\BearerAuthenticator;
 use VetPetAPI\Authentication\Basic_Authenticator;
+use VetPetAPI\Authentication\JWTAuthenticator;
 use VetPetAPI\Authentication\MyAuthenticator;
 
 $app->get('/', function ($request, $response, $args) {
@@ -70,4 +71,5 @@ $app->group('/api/v1', function () {
     });
 //})->add(new MyAuthenticator()); //My Authenticator method
 //})->add(new Basic_Authenticator()); //Basic Authenticator method
-})->add(new BearerAuthenticator()); //BearerAuthenticator method
+//})->add(new BearerAuthenticator()); //BearerAuthenticator method
+})->add(new JWTAuthenticator()); //JWTAuthenticator method
