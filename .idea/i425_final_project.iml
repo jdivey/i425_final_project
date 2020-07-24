@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/vetpet-api/api" isTestSource="false" packagePrefix="VetPetAPI\" />
       <excludeFolder url="file://$MODULE_DIR$/vetpet-api/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vetpet-api/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/vetpet-api/vendor/firebase/php-jwt" />
       <excludeFolder url="file://$MODULE_DIR$/vetpet-api/vendor/illuminate/container" />
       <excludeFolder url="file://$MODULE_DIR$/vetpet-api/vendor/illuminate/contracts" />
       <excludeFolder url="file://$MODULE_DIR$/vetpet-api/vendor/illuminate/database" />

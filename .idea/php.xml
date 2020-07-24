@@ -21,6 +21,7 @@
       <path value="$PROJECT_DIR$/vetpet-api/vendor/illuminate/support" />
       <path value="$PROJECT_DIR$/vetpet-api/vendor/respect/stringifier" />
       <path value="$PROJECT_DIR$/vetpet-api/vendor/respect/validation" />
+      <path value="$PROJECT_DIR$/vetpet-api/vendor/firebase/php-jwt" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
