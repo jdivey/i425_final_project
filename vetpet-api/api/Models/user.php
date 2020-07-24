@@ -10,8 +10,7 @@ namespace VetPetAPI\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Firebase\JWT\JWT;
-use Google_Service_Oauth2;
-use Google_Client;
+
 
 class User extends Model
 {
@@ -136,7 +135,7 @@ class User extends Model
 
         $key = self::JWT_KEY;
         $expiration = time() + self::JWT_EXPIRE;
-        $issuer = 'mycollege-api.com';
+        $issuer = 'vetpet-api.com';
 
         $token = [
             'rss' => $issuer,

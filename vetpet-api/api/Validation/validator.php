@@ -78,6 +78,18 @@
             return self::validate($request, $rules);
         }
 
+        // Validate attributes of a User model. Do not include fields having default values (id, role, etc.)
+        public function validateUser($request) {
+            $rules = [
+                'name' => v::alnum(' '),
+                'email' => v::email(),
+                'username' => v::notEmpty(),
+                'password' => v::notEmpty()
+            ];
+
+            return self::validate($request, $rules);
+        }
+
         //return the errors in an array
         public static function getErrors() {
             return self::$errors;

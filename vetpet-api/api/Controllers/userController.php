@@ -52,7 +52,7 @@ class UserController
             return $response->withJson($results, 500, JSON_PRETTY_PRINT);
         }
 
-        // Validation has passed; Proceed to create the professor
+        // Validation has passed; Proceed to create the user
         $user = User::createUser($request);
         $results = [
             'status' => 'User created',

@@ -20,13 +20,13 @@
         {
             //username and password are stored in a header called "MyCollegeAPI-Authorization".  value of the header
             //is formatted as username:password
-            if (!$request->hasHeader('MyCollegeAPI-Authorization')) {
+            if (!$request->hasHeader('VetPetAPI-Authorization')) {
                 $results = ['Status' => 'Authorization header not found.'];
                 return $response->withJson($results, 404, JSON_PRETTY_PRINT);
             }
 
             //retrieve the header and then the username and password
-            $auth = $request->getHeader('MyCollegeAPI-Authorization');
+            $auth = $request->getHeader('VetPetAPI-Authorization');
             list($username, $password) = explode(':', $auth[0]);
 
             //validate username and password

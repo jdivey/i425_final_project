@@ -8,6 +8,7 @@
 
 use VetPetAPI\Controllers\PetController;
 use VetPetAPI\Controllers\CustomerController;
+use VetPetAPI\Controllers\UserController;
 use VetPetAPI\Controllers\VetController;
 use VetPetAPI\Controllers\Appointment_statusController;
 
@@ -26,4 +27,8 @@ $container['Vet'] = function ($c) {
 
 $container['Appointment'] = function ($c) {
     return new Appointment_statusController();
+};
+
+$container['User'] = function ($c) {
+    return new UserController();
 };

@@ -33,7 +33,7 @@ class Basic_Authenticator {
         //Authenticate the user
         if(!user::authenticateUser($username, $password)) {
             $results = ['Status' => 'Authentication failed.'];
-            return $response->withHeader('www-Authenticate', 'Basic realn="MyCollegeAPI API"')
+            return $response->withHeader('www-Authenticate', 'Basic realn="VetPetAPI API"')
                 ->withJson($results, 401, JSON_PRETTY_PRINT);
         }
 

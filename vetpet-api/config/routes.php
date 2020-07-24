@@ -7,12 +7,28 @@
  */
 
 //define app routes
+use VetPetAPI\Authentication\BearerAuthenticator;
+use VetPetAPI\Authentication\Basic_Authenticator;
+use VetPetAPI\Authentication\MyAuthenticator;
+
 $app->get('/', function ($request, $response, $args) {
     return $response->write('Welcome to VetPet API');
 });
 
 $app->get('/api/hello/{name}', function ($request, $response, $args) {
     return $response->write("Hello ". $args['name']);
+});
+
+// User routes
+$app->group('/api/v1/users', function () {
+    $this->get('', 'User:index');
+    $this->get('/{id}', 'User:view');
+    $this->post('', 'User:create');
+    $this->put('/{id}', 'User:update');
+    $this->delete('/{id}', 'User:delete');
+    $this->post('/authBearer', 'User:authBearer');
+    $this->post('/authJWT', 'User:authJWT');
+
 });
 
 //route pet group
@@ -52,4 +68,6 @@ $app->group('/api/v1', function () {
         $this->put('/{appointment_id}', 'Appointment:update');
         $this->delete('/{appointment_id}', 'Appointment:delete');
     });
-});
+//})->add(new MyAuthenticator()); //My Authenticator method
+//})->add(new Basic_Authenticator()); //Basic Authenticator method
+})->add(new BearerAuthenticator()); //BearerAuthenticator method
