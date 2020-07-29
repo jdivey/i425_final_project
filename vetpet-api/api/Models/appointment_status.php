@@ -35,10 +35,46 @@ class Appointment_status extends Model
     }
 
     //view a specific appointment by id
-    public static function getAppointmentId($appointment_id) {
-        $appointment = self::findOrfail($appointment_id);
-        return $appointment;
+    public static function getAppointmentId($request) {
+        //Get total number of row count
+        $count = self::count();
+
+        //Get querystring variables from url
+        $params = $request->getQueryParams();
+
+        //Do Limit and Offset exist?
+        $limit = array_key_exists('limit', $params) ? (int)$params['limit'] : 10; //Items per page
+        $offset = array_key_exists('offset', $params) ? (int)$params['offset'] : 0; //Offset of the first item
+
+        //Pagination
+        $links = self::getLinks($request, $limit, $offset);
+
+        //Sorting
+        $sort_key_array = self::getSortKeys($request);
+
+        //Build query
+        $query = self::skip('appointment_status'); //Build the query to get all courses
+        $query = $query->skip($offset)->take($limit); //Limit the rows
+
+        //Sort the output by one or more columns
+        foreach($sort_key_array as $column => $direction) {
+            $query->orderBy($column, $direction);
+        }
+        $appointment = $query->get();
+
+        //Construct the data for response
+        $results = [
+            'totalCount' => $count,
+            'limit' => $limit,
+            'offset' => $offset,
+            'links' => $links,
+            'sort' => $sort_key_array,
+            'data' => $appointment
+        ];
+
+        return $results;
     }
+    
 
     //search for an appointment
     public static function searchAppointments($term) {
