@@ -8,11 +8,11 @@
 
 namespace VetPetAPI\Controllers;
 
-
+use VetPetAPI\Validation\Validator;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use VetPetAPI\Models\Customer;
-use VetPetAPI\Validation\Validator;
+
 
 class  CustomerController{
     //list all customers
@@ -24,10 +24,9 @@ class  CustomerController{
         if (!is_null($term)) {
             $results = Customer::searchCustomers($term);
         }else{
-            $results = Customer::getCustomers();
+            $results = Customer::getCustomers($request);
         }
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
-
     }
 
     //view a customer

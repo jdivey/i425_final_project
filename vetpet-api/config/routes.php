@@ -46,6 +46,7 @@ $app->group('/api/v1', function () {
     //the customer group
     $this->group('/customers', function () {
         $this->get('', 'Customer:index');
+        //$this->get('', 'Customer:paginate');
         $this->get('/{customer_id}', 'Customer:view');
         $this->post('', 'Customer:create');
         $this->put('/{customer_id}', 'Customer:update');

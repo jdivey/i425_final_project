@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use VetPetAPI\Validation\Validator;
 use VetPetAPI\Models\User;
 
-class UserController
+class userController
 {
     // List users. The url may contain querystring parameters for login, authenticate with JWT or Bearer token.
     public function index(Request $request, Response $response, array $args)

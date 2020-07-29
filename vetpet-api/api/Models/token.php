@@ -9,7 +9,7 @@
 namespace VetPetAPI\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class Token extends Model {
+class token extends Model {
     //lifetime of the Bearer token: seconds
     const EXPIRE = 3600;
 
