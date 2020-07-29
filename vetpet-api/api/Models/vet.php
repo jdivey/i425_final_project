@@ -27,6 +27,9 @@ class Vet extends Model
     //if the created at and updated at columns are not used
     public $timestamps = false;
 
+
+
+
     //retrieve all vets
     public static function getVets() {
         $vets = self::all();

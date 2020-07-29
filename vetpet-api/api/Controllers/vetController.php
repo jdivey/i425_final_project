@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use VetPetAPI\Validation\Validator;
 
 
-class  VetController{
+class  vetController{
     //list all vets
     public function index(Request $request, Response $response, array $args) {
         //get query string variables from url

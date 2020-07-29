@@ -11,7 +11,7 @@
     use Respect\Validation\Validator as v;
     use Respect\Validation\Exceptions\NestedValidationException;
 
-    class Validator {
+    class validator {
         private static $errors = [];
 
         //a generic Validation method it returns true on success or false on failure
