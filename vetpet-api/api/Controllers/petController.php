@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use VetPetAPI\Validation\Validator;
 
 
-class  PetController{
+class  petController{
     //list all pets
     public function index(Request $request, Response $response, array $args) {
         //get query string variables from url
@@ -91,4 +91,5 @@ class  PetController{
         $results = ['status' => $status];
         return $response->withJson($results, $status_code, JSON_PRETTY_PRINT);
     }
+
 }

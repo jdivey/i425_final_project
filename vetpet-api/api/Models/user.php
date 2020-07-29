@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Firebase\JWT\JWT;
 
 
-class User extends Model
+class user extends Model
 {
     //JWT secret
     const JWT_KEY = 'VetPetAPI-api-v25';
