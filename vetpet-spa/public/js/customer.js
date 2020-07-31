@@ -31,14 +31,13 @@ function displayCustomers(customers) {
     for (let x in customers) {
         let customer = customers[x];
         let cssClass = (x % 2 == 0) ? 'content-row' : 'content-row content-row-odd';
-        _html += `<div id='content-row-${customer.id}' class='${cssClass}'>
-            <div class='customer-first-name'>
-                <span class='list-key' data-customer='${customer.id}' 
-                     onclick=showCustomerPets('${customer.id}') 
-                     title='Get pets of the customers'>${customer.id}
+        _html += `<div id='content-row-${customer.customer_id}' class='${cssClass}'>
+            <div class='customer-id'>
+                <span class='list-key' data-customer='${customer.customer_id}' 
+                     onclick=showCustomerPets('${customer.customer_id}') 
+                     title='Get pets owned by the customers'>${customer.customer_id}
                 </span>
             </div>
-            <div class='customer-id'>${customer.customer_id}</div>
             <div class='customer-first-name'>${customer.first_name}</div>
             <div class='customer-last-name'>${customer.last_name}</div>
             </div>`;
