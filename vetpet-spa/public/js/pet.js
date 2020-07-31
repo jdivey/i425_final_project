@@ -1,14 +1,14 @@
 /***********************************************************************************************************
- ******                            Show Courses                                                      ******
+ ******                            Show Pets                                                     ******
  **********************************************************************************************************/
-//This function shows all courses. It gets called when a user clicks on the Course link in the nav bar.
-function showCourses () {
-	console.log('show all courses');
+//This function shows all pets. It gets called when a user clicks on the Pet link in the nav bar.
+function showPets () {
+	console.log('show all pets');
 }
 
 
-//Callback function: display all courses; The parameter is a promise returned by axios request.
-function displayCourses(response) {
+//Callback function: display all pets; The parameter is a promise returned by axios request.
+function displayPets(response) {
     let _html;
     _html =
         "<div class='content-row content-row-header'>" +

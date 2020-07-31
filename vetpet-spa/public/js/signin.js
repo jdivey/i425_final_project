@@ -6,7 +6,7 @@ var role = '';  //user's role: 1 for admins and 2 for regular users
 function signin() {
     $('.img-loading, main, .form-signup, #li-signout, #li-signup').hide();
     $('.form-signin, #li-signin').show();
-    $("li#li-professor > a, li#li-course > a, li#li-student > a").addClass('disabled');
+    $("li#li-customer > a, li#li-pet > a, li#li-student > a").addClass('disabled');
 
     //remove these two lines once the lab is done
     $('#signin-username').val('jdivey');

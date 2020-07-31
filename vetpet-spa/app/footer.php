@@ -26,8 +26,8 @@
 <script src="js/lib/axios.min.js"></script>
 
 
-<script src="js/professor.js"></script>
-<script src="js/course.js"></script>
+<script src="js/customer.js"></script>
+<script src="js/pet.js"></script>
 <script src="js/student.js"></script>
 <script src="js/signin.js"></script>
 <script src="js/signup.js"></script>

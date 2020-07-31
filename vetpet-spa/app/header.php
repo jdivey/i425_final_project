@@ -20,7 +20,7 @@
     <!-- css for the signin page -->
     <link rel="stylesheet" href="css/index.css" >
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/professor.css">
+    <link rel="stylesheet" href="css/customer.css">
     <link rel="stylesheet" href="css/class.css">
     <link rel="stylesheet" href="css/course.css">
     <link rel="stylesheet" href="css/student.css">
@@ -41,11 +41,11 @@
             </button>
             <div class="navbar-collapse collapse" id="navbarCollapse" style="">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item" id="li-professor">
-                        <a class="nav-link disabled" href="#professor">Professor <span class="sr-only">(current)</span></a>
+                    <li class="nav-item" id="li-customer">
+                        <a class="nav-link disabled" href="#customer">Customer <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item" id="li-course">
-                        <a class="nav-link disabled" href="#course">Course</a>
+                    <li class="nav-item" id="li-pet">
+                        <a class="nav-link disabled" href="#pet">Pet</a>
                     </li>
                     <li class="nav-item" id="li-student">
                         <a class="nav-link disabled" href="#student">Student</a>

@@ -24,7 +24,7 @@ $(function () {
             case 'customer':
                 showCustomers();
                 break;
-            case 'Pet':
+            case 'pet':
                 showPets();
                 break;
             case 'student':
@@ -74,7 +74,7 @@ function home() {
         <p>Please click on the "Sign in" link to sign in and explore the site. If you don't already have an account, please sign up and create a new account.</p>`;
 
     // Update the section heading, sub heading, and content
-    updateMain('Home', 'Welcome to MyCollege Application', _html);
+    updateMain('Home', 'Welcome to VetPet Application', _html);
 }
 
 // This function updates main section content.
