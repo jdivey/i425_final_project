@@ -32,9 +32,9 @@
 
 <header>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary"">
         <div class="container">
-            <a class="navbar-brand" href="#home" style="color:#F0E607; font-weight: bold"><img src="img/college-icon.png" style="width:40px;">&nbsp;VetPet</a>
+            <a class="navbar-brand" href="#home" style="color:#ffffff; font-weight: bold">&nbsp;VetPet</a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

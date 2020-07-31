@@ -3,7 +3,7 @@
  **********************************************************************************************************/
 //This function shows all customers. It gets called when a user clicks on the Customer link in the nav bar.
 function showCustomers() {
-    //console.log('show all the customers');
+    console.log('show all the customers');
     //Constant of the url
     const url = baseUrl_API + '/api/v1/customers';
 
@@ -54,15 +54,15 @@ function displayCustomers(customers) {
  * the professor list. The parameter is the professor's id.
 */
 //Display customers of each pet in a modal
-function showCustomerPets(id) {
+function showCustomerPets(customer_id) {
     //console.log('show a pet\'s classes');
-    const name = $("span[data-customers=']" + id + "']").html();
-    const url = baseUrl_API + '/api/v1/customers/' + id + '/pets';
+    const id = $("span[data-customers=']" + customer_id + "']").html();
+    const url = baseUrl_API + '/api/v1/customers/' + customer_id + '/pets';
     $.ajax({
         url: url,
         headers: {"Authorization": " Bearer " + jwt}
     }).done(function(pets) {
-        displayPets(customer_id, pets);
+        displayPets(id, pets);
     }).fail(function(xhr) {
         let err = {"Code": xhr.status, "Status": xhr.responseJSON.status};
         showMessage('Error', JSON.stringify(err, null, 4));

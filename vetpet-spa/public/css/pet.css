@@ -1,5 +1,5 @@
 /*
-*  styles for course-related elements
+*  styles for pet-related elements
 */
 
 
@@ -50,20 +50,20 @@
 
 
 
-.course-pagination {
+.pet-pagination {
     border-top: 1px solid #e4f1fe;
     border-left: none;
     border-right: none;
     padding-top: 10px;
 }
 
-.course-pagination div {
+.pet-pagination div {
     width: 100%;
     text-align: right;
     font-size: 0.8em;
 }
 
-.course-pagination  a {
+.pet-pagination  a {
     border-radius: 3px;
     border: 1px solid #e4f1fe;
     width: 20px;
