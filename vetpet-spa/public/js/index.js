@@ -1,5 +1,5 @@
 var oldHash = '';
-var baseUrl_API = 'http://localhost/I425/mycollege-api/public';   //local server
+var baseUrl_API = 'http://localhost/I425_final_project/vetpet-api/public';   //local server
 
 $(function () {
     //Handle hashchange event; when a click is clicked, invoke an appropriate function
@@ -21,11 +21,11 @@ $(function () {
             case 'home':
                 home();
                 break;
-            case 'professor':
-                showProfessors();
+            case 'customer':
+                showCustomers();
                 break;
-            case 'course':
-                showCourses();
+            case 'Pet':
+                showPets();
                 break;
             case 'student':
                 showStudents();
