@@ -1,28 +1,16 @@
 /*
 *  styles for customer-related elements
  */
-.professor-name {
+.customer-id {
     min-width: 200px
 }
 
-.professor-email {
+.customer-first-name {
     min-width: 150px
 }
 
-.professor-phone {
+.customer-last-name {
     min-width: 120px
-}
-
-.professor-office {
-    min-width: 100px
-}
-
-.professor-department {
-     min-width: 150px
- }
-
-.professor-program {
-    min-width: 100px
 }
 
 
