@@ -1,5 +1,5 @@
 var oldHash = '';
-var baseUrl_API = 'http://localhost/I425_final_project/vetpet-api/public';   //local server
+var baseUrl_API = 'http://localhost/i425_final_project/vetpet-api/public';   //local server
 
 $(function () {
     //Handle hashchange event; when a click is clicked, invoke an appropriate function
