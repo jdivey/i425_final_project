@@ -1,0 +1,29 @@
+/*
+*  styles for class-related elements
+ */
+
+.class {
+    font-size: 0.9em;
+}
+.class th {
+    background-color: #eeeeee;
+}
+.class td, .class th {
+    padding: 5px 2px;
+}
+
+.class-course {
+    min-width: 130px
+}
+
+.class-section {
+    min-width: 100px
+}
+
+.class-semester {
+    min-width: 100px
+}
+
+.class-year {
+    min-width: 100px
+}

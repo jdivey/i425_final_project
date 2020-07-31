@@ -1,0 +1,74 @@
+/*
+*  styles for course-related elements
+*/
+
+
+.course-number{
+    width: 130px
+}
+
+.course-title {
+    width: 400px
+}
+
+.course-hour {
+    width: 150px
+}
+
+.course-prerequisite {
+    width: 200px
+}
+
+
+.course-detail {
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-detail-row {
+    border-top: #b7d2ff solid 1px;
+    border-bottom: #b7d2ff solid 1px;
+    margin-bottom: -1px;
+    display: flex;
+    flex-direction: row;
+}
+
+.course-detail-label {
+    padding: 3px 10px;
+    min-width: 120px;
+    text-align: right;
+    font-weight: bold;
+    border-right: #b7d2ff solid 1px;
+    align-items: normal;
+}
+
+.course-detail-field {
+    padding: 3px 10px;
+    align-items: normal;
+}
+
+
+
+.course-pagination {
+    border-top: 1px solid #e4f1fe;
+    border-left: none;
+    border-right: none;
+    padding-top: 10px;
+}
+
+.course-pagination div {
+    width: 100%;
+    text-align: right;
+    font-size: 0.8em;
+}
+
+.course-pagination  a {
+    border-radius: 3px;
+    border: 1px solid #e4f1fe;
+    width: 20px;
+    height: 18px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
+}
