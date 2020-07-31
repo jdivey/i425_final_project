@@ -12,10 +12,14 @@ function displayPets(response) {
     let _html;
     _html =
         "<div class='content-row content-row-header'>" +
-        "<div class='course-number'>Number</></div>" +
-        "<div class='course-title'>Title</></div>" +
-        "<div class='course-hour'>Credit Hours</div>" +
-        "<div class='course-prerequisite'>Prerequisites</div>" +
+        "<div class='pet-id'>Pet ID</></div>" +
+        "<div class='owner-id'>Owner ID</></div>" +
+        "<div class='pet-type'>Pet Type</div>" +
+        "<div class='pet-breed'>Pet Breed</div>" +
+        "<div class='pet-sex'>Pet Sex</div>" +
+        "<div class='pet-birthday'>Pet Birthday</div>" +
+        "<div class='pet-first-name'>First Name</div>" +
+        "<div class='pet-last-name'>Last Name</div>" +
         "</div>";
     courses = response.data;
     courses.forEach(function(course, x){

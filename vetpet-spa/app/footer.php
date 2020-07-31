@@ -28,7 +28,7 @@
 
 <script src="js/customer.js"></script>
 <script src="js/pet.js"></script>
-<script src="js/student.js"></script>
+<script src="js/appointment.js"></script>
 <script src="js/signin.js"></script>
 <script src="js/signup.js"></script>
 <script src="js/signout.js"></script>

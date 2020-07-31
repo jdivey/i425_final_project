@@ -22,10 +22,10 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/customer.css">
     <link rel="stylesheet" href="css/class.css">
-    <link rel="stylesheet" href="css/course.css">
-    <link rel="stylesheet" href="css/student.css">
+    <link rel="stylesheet" href="css/pet.css">
+    <link rel="stylesheet" href="css/appointment.css">
     <link rel="stylesheet" href="css/signin.css">
-    <title>MyCollege Single Page Application</title>
+    <title>VetPet Single Page Application</title>
 
 </head>
 <body class="d-flex flex-column h-100">
@@ -34,7 +34,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="#home" style="color:#F0E607; font-weight: bold"><img src="img/college-icon.png" style="width:40px;">&nbsp;MyCollege</a>
+            <a class="navbar-brand" href="#home" style="color:#F0E607; font-weight: bold"><img src="img/college-icon.png" style="width:40px;">&nbsp;VetPet</a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,8 +47,8 @@
                     <li class="nav-item" id="li-pet">
                         <a class="nav-link disabled" href="#pet">Pet</a>
                     </li>
-                    <li class="nav-item" id="li-student">
-                        <a class="nav-link disabled" href="#student">Student</a>
+                    <li class="nav-item" id="li-appointment">
+                        <a class="nav-link disabled" href="#appointment">Appointment</a>
                     </li>
                     <li class="nav-item" id="li-signin">
                         <a class="nav-link" href="#signin">Sign in</a>

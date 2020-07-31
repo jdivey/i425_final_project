@@ -2,23 +2,23 @@
 *  styles for student-related elements
  */
 
-.student-id {
+.appointment-id {
     width: 100px;
 }
 
-.student-name {
+.pet-id {
     width: 200px;
 }
 
-.student-email {
+.appointment-status {
     width: 150px;
 }
 
-.student-major {
+.appointment-type {
     width: 250px;
 }
 
-.student-gpa {
+.vet-id {
     width: 100px;
 }
 

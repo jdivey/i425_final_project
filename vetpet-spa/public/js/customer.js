@@ -35,7 +35,7 @@ function displayCustomers(customers) {
             <div class='customer-first-name'>
                 <span class='list-key' data-customer='${customer.id}' 
                      onclick=showCustomerPets('${customer.id}') 
-                     title='Get pets of the customers'>${customer.name}
+                     title='Get pets of the customers'>${customer.id}
                 </span>
             </div>
             <div class='customer-id'>${customer.customer_id}</div>

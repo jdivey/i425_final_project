@@ -1,26 +1,25 @@
 /***********************************************************************************************************
- ******                            CRUD Students                                                      ******
+ ******                            CRUD Appointments                                                     ******
  **********************************************************************************************************/
 
 //This function gets called when the Student link in the nav bar is clicked. It shows all the records of students
-function showStudents() {
-	console.log('Show all students');
+function showAppointments() {
+	console.log('Show all appointments');
 }
 
 
-//Callback function that shows all the students. The parameter is an array of students.
+//Callback function that shows all the appointments. The parameter is an array of appointments.
 // The first parameter is an array of students and second parameter is the subheading, defaults to null.
-function displayStudents(students, subheading=null) {
+function displayAppointments(appointments, subheading=null) {
     // search box and the row of headings
     let _html = `<div style='text-align: right; margin-bottom: 3px'>
             <input id='search-term' placeholder='Enter search terms'> 
-            <button id='btn-student-search' onclick='searchStudents()'>Search</button></div>
+            <button id='btn-student-search' onclick='searchAppointments()'>Search</button></div>
             <div class='content-row content-row-header'>
-            <div class='student-id'>Student ID</div>
-            <div class='student-name'>Name</div>
-            <div class='student-email'>Email</div>
-            <div class='student-major'>Major</div>
-            <div class='student-gpa'>GPA</div>
+            <div class='appointment-id'>Appointment ID</div>
+            <div class='pet-id'>Pet ID</div>
+            <div class='appointment-status'>Appointment Status</div>
+            <div class='vet-id'>Vet ID</div>
             </div>`;  //end the row
 
     // content rows
@@ -57,8 +56,8 @@ function displayStudents(students, subheading=null) {
         _html += `<div class='content-row student-add-button-row'><div class='student-add-button' onclick='showAddRow()'>+ ADD NEW STUDENT</div></div>`;
     }
     //Finally, update the page
-    subheading = (subheading == null) ? 'All Students' : subheading;
-    updateMain('Students', subheading, _html);
+    subheading = (subheading == null) ? 'All Appointments' : subheading;
+    updateMain('Appointments', subheading, _html);
 }
 
 /***********************************************************************************************************

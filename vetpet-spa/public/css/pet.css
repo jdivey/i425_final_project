@@ -3,30 +3,30 @@
 */
 
 
-.course-number{
+.pet-id{
     width: 130px
 }
 
-.course-title {
+.owner-id {
     width: 400px
 }
 
-.course-hour {
+.pet-type {
     width: 150px
 }
 
-.course-prerequisite {
+.pet-breed {
     width: 200px
 }
 
 
-.course-detail {
+.pet-sex {
     margin: 20px 0px;
     display: flex;
     flex-direction: column;
 }
 
-.course-detail-row {
+.pet-birthday {
     border-top: #b7d2ff solid 1px;
     border-bottom: #b7d2ff solid 1px;
     margin-bottom: -1px;
@@ -34,7 +34,7 @@
     flex-direction: row;
 }
 
-.course-detail-label {
+.pet-first-name {
     padding: 3px 10px;
     min-width: 120px;
     text-align: right;
@@ -43,7 +43,7 @@
     align-items: normal;
 }
 
-.course-detail-field {
+.pet-last-name{
     padding: 3px 10px;
     align-items: normal;
 }

@@ -27,8 +27,8 @@ $(function () {
             case 'pet':
                 showPets();
                 break;
-            case 'student':
-                showStudents();
+            case 'appointment':
+                showAppointments();
                 break;
             case 'signin':
                 signin();
