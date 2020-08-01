@@ -14,7 +14,7 @@ function displayAppointments(appointments, subheading=null) {
     // search box and the row of headings
     let _html = `<div style='text-align: right; margin-bottom: 3px'>
             <input id='search-term' placeholder='Enter search terms'> 
-            <button id='btn-student-search' onclick='searchAppointments()'>Search</button></div>
+            <button id='btn-appointment-search' onclick='searchAppointments()'>Search</button></div>
             <div class='content-row content-row-header'>
             <div class='appointment-id'>Appointment ID</div>
             <div class='pet-id'>Pet ID</div>
@@ -23,19 +23,18 @@ function displayAppointments(appointments, subheading=null) {
             </div>`;  //end the row
 
     // content rows
-    for (let x in students) {
-        let student = students[x];
+    for (let x in appointments) {
+        let appointment = appointments[x];
         _html += `<div class='content-row'>
-            <div class='student-id'>${student.id}</div>
-            <div class='student-name' id='student-edit-name-${student.id}'>${student.name}</div> 
-            <div class='student-email' id='student-edit-email-${student.id}'>${student.email}</div>
-            <div class='student-major' id='student-edit-major-${student.id}'>${student.major}</div> 
-            <div class='student-gpa' id='student-edit-gpa-${student.id}'>${student.gpa}</div>`;
+            <div class='appointment-id'>${student.id}</div>
+            <div class='pet-id' id='student-edit-name-${student.id}'>${student.name}</div> 
+            <div class='appointment-status' id='student-edit-email-${student.id}'>${student.email}</div>
+            <div class='vet-id' id='student-edit-major-${student.id}'>${student.major}</div>`;
         if (role == 1) {
-            _html += `<div class='list-edit'><button id='btn-student-edit-${student.id}' onclick=editStudent('${student.id}') class='btn-light'> Edit </button></div>
-            <div class='list-update'><button id='btn-student-update-${student.id}' onclick=updateStudent('${student.id}') class='btn-light btn-update' style='display:none'> Update </button></div>
-            <div class='list-delete'><button id='btn-student-delete-${student.id}' onclick=deleteStudent('${student.id}') class='btn-light'>Delete</button></div>
-            <div class='list-cancel'><button id='btn-student-cancel-${student.id}' onclick=cancelUpdateStudent('${student.id}') class='btn-light btn-cancel' style='display:none'>Cancel</button></div>`
+            _html += `<div class='list-edit'><button id='btn-appointment-edit-${student.id}' onclick=editAppointment('${student.id}') class='btn-light'> Edit </button></div>
+            <div class='list-update'><button id='btn-appointment-update-${student.id}' onclick=updateAppointment('${student.id}') class='btn-light btn-update' style='display:none'> Update </button></div>
+            <div class='list-delete'><button id='btn-appointment-delete-${student.id}' onclick=deleteAppointment('${student.id}') class='btn-light'>Delete</button></div>
+            <div class='list-cancel'><button id='btn-appointment-cancel-${student.id}' onclick=cancelUpdateAppointment('${student.id}') class='btn-light btn-cancel' style='display:none'>Cancel</button></div>`
         }
         _html += '</div>';  //end the row
     }
@@ -61,21 +60,21 @@ function displayAppointments(appointments, subheading=null) {
 }
 
 /***********************************************************************************************************
- ******                            Search Students                                                    ******
+ ******                            Search Appointments                                                   ******
  **********************************************************************************************************/
-function searchStudents() { 
-   console.log('searching for students'); 
+function searchAppointments() {
+   console.log('searching for appointments');
 }
 
 
 /***********************************************************************************************************
- ******                            Edit Student                                                       ******
+ ******                            Edit Appointment                                                       ******
  **********************************************************************************************************/
 
 // This function gets called when a user clicks on the Edit button to make items editable
-function editStudent(id) {
+function editAppointment(id) {
     //Reset all items
-    resetStudent();
+    resetAppointment();
 
     //select all divs whose ids begin with 'student' and end with the current id and make them editable
     $("div[id^='student-edit'][id$='" + id + "']").each(function () {
@@ -99,47 +98,47 @@ function cancelUpdateStudent(id) {
 }
 
 /***********************************************************************************************************
- ******                            Delete Student                                                     ******
+ ******                            Delete Appointment                                                     ******
  **********************************************************************************************************/
 
-// This function confirms deletion of a student. It gets called when a user clicks on the Delete button.
-function deleteStudent(id) {
+// This function confirms deletion of an appointment. It gets called when a user clicks on the Delete button.
+function deleteAppointment(id) {
     $('#modal-button-ok').html("Delete").show().off('click').click(function () {
-        removeStudent(id);
+        removeAppointment(id);
     });
     $('#modal-button-close').html('Cancel').show().off('click');
-    $('#modal-content').html('Are you sure you want to delete the student?');
+    $('#modal-content').html('Are you sure you want to delete the appointment?');
 
     // Display the modal
     $('#modal-center').modal();
 }
 
-// Callback function that removes a student from the system. It gets called by the deleteStudent function.
-function removeStudent(id) {
-	console.log('remove the student whose id is ' + id);
+// Callback function that removes an appointment from the system. It gets called by the deleteAppointment function.
+function removeAppointment(id) {
+	console.log('remove the appointment whose id is ' + id);
 }
 
 
 /***********************************************************************************************************
- ******                            Add Student                                                        ******
+ ******                            Add Appointment                                                        ******
  **********************************************************************************************************/
 //This function shows the row containing editable fields to accept user inputs.
-// It gets called when a user clicks on the Add New Student link
+// It gets called when a user clicks on the Add New Appointment link
 function showAddRow() {
-    resetStudent(); //Reset all items
-    $('div#student-add-row').show();
+    resetAppointment(); //Reset all items
+    $('div#appointment-add-row').show();
 }
 
-//This function inserts a new student. It gets called when a user clicks on the Insert button.
-function addStudent() {
-	console.log('Add a new student');
+//This function inserts a new appointment. It gets called when a user clicks on the Insert button.
+function addAppointment() {
+	console.log('Add a new appointment');
 }
 
 
 
-// This function cancels adding a new student. It gets called when a user clicks on the Cancel button.
-function cancelAddStudent() {
-    $('#student-add-row').hide();
+// This function cancels adding a new appointment. It gets called when a user clicks on the Cancel button.
+function cancelAddAppointment() {
+    $('#appointment-add-row').hide();
 }
 
 /***********************************************************************************************************
@@ -161,17 +160,17 @@ let checkFetch = async function (response) {
 
 
 /***********************************************************************************************************
- ******                            Reset student section                                             ******
+ ******                            Reset appointment section                                             ******
  **********************************************************************************************************/
-//Reset student section: remove editable features, hide update and cancel buttons, and display edit and delete buttons
-function resetStudent() {
+//Reset appointment section: remove editable features, hide update and cancel buttons, and display edit and delete buttons
+function resetAppointment() {
     // Remove the editable feature from all divs
-    $("div[id^='student-edit-']").each(function () {
-        $(this).removeAttr('contenteditable').removeClass('student-editable');
+    $("div[id^='appointment-edit-']").each(function () {
+        $(this).removeAttr('contenteditable').removeClass('appointment-editable');
     });
 
     // Hide all the update and cancel buttons and display all the edit and delete buttons
-    $("button[id^='btn-student-']").each(function () {
+    $("button[id^='btn-appointment-']").each(function () {
         const id = $(this).attr('id');
         if (id.indexOf('update') >= 0 || id.indexOf('cancel') >= 0) {
             $(this).hide();
