@@ -40,32 +40,31 @@ function displayAppointments(appointments, subheading=null) {
         let appointment = appointments[x];
         _html += `<div class='content-row'>
             <div class='appointment-id'>${appointment.appointment_id}</div>
-            <div class='pet-id' id='student-edit-name-${appointment.appointment_id}'>${appointment.pet_id}</div> 
-            <div class='appointment-status' id='student-edit-email-${appointment.appointment_id}'>${appointment.appointment_status}</div>
-            <div class='vet-id' id='student-edit-major-${appointment.appointment_id}'>${appointment.vet_id}</div>`;
+            <div class='pet-id' id='appointment-edit-pet-id-${appointment.appointment_id}'>${appointment.pet_id}</div> 
+            <div class='appointment-status' id='appointment-edit-appointment-status-${appointment.appointment_id}'>${appointment.appointment_status}</div>
+            <div class='vet-id' id='appointment-edit-vet-id-${appointment.appointment_id}'>${appointment.vet_id}</div>`;
         if (role == 1) {
-            _html += `<div class='list-edit'><button id='btn-appointment-edit-${appointment.id}' onclick=editAppointment('${appointment.id}') class='btn-light'> Edit </button></div>
-            <div class='list-update'><button id='btn-appointment-update-${appointment.id}' onclick=updateAppointment('${appointment.id}') class='btn-light btn-update' style='display:none'> Update </button></div>
-            <div class='list-delete'><button id='btn-appointment-delete-${appointment.id}' onclick=deleteAppointment('${appointment.id}') class='btn-light'>Delete</button></div>
-            <div class='list-cancel'><button id='btn-appointment-cancel-${appointment.id}' onclick=cancelUpdateAppointment('${appointment.id}') class='btn-light btn-cancel' style='display:none'>Cancel</button></div>`
+            _html += `<div class='list-edit'><button id='btn-appointment-edit-${appointment.id}' onclick=editAppointment('${appointment.appointment_id}') class='btn-light'> Edit </button></div>
+            <div class='list-update'><button id='btn-appointment-update-${appointment.appointment_id}' onclick=updateAppointment('${appointment.appointment_id}') class='btn-light btn-update' style='display:none'> Update </button></div>
+            <div class='list-delete'><button id='btn-appointment-delete-${appointment.appointment_id}' onclick=deleteAppointment('${appointment.appointment_id}') class='btn-light'>Delete</button></div>
+            <div class='list-cancel'><button id='btn-appointment-cancel-${appointment.appointment_id}' onclick=cancelUpdateAppointment('${appointment.appointment_id}') class='btn-light btn-cancel' style='display:none'>Cancel</button></div>`
         }
         _html += '</div>';  //end the row
     }
 
-    //the row of element for adding a new student
+    //the row of element for adding a new appointment
 	if (role == 1) {
-        _html += `<div class='content-row' id='student-add-row' style='display: none'> 
-            <div class='student-id student-editable' id='student-new-id' contenteditable='true'></div>
-            <div class='student-name student-editable' id='student-new-name' contenteditable='true'></div>
-            <div class='student-email student-editable' id='student-new-email' contenteditable='true'></div>
-            <div class='student-major student-editable' id='student-new-major' contenteditable='true'></div>
-            <div class='student-gpa student-editable' id='student-new-gpa' contenteditable='true'></div>
-            <div class='list-update'><button id='btn-add-student-insert' onclick='addStudent()' class='btn-light btn-update'> Insert </button></div>
-            <div class='list-cancel'><button id='btn-add-student-cancel' onclick='cancelAddStudent()' class='btn-light btn-cancel'>Cancel</button></div>
+        _html += `<div class='content-row' id='appointment-add-row' style='display: none'> 
+            <div class='appointment-id appointment-editable' id='appointment-new-id' contenteditable='true'></div>
+            <div class='pet-id appointment-editable' id='appointment-new-pet-id' contenteditable='true'></div>
+            <div class='appointment-status appointment-editable' id='appointment-new-appointment-status' contenteditable='true'></div>
+            <div class='vet-id appointment-editable' id='appointment-new-vet-id' contenteditable='true'></div>
+            <div class='list-update'><button id='btn-add-appointment-insert' onclick='addAppointment()' class='btn-light btn-update'> Insert </button></div>
+            <div class='list-cancel'><button id='btn-add-appointment-cancel' onclick='cancelAddAppointment()' class='btn-light btn-cancel'>Cancel</button></div>
             </div>`;  //end the row
 
-        // add new student button
-        _html += `<div class='content-row student-add-button-row'><div class='student-add-button' onclick='showAddRow()'>+ ADD NEW STUDENT</div></div>`;
+        // add new appointment button
+        _html += `<div class='content-row appointment-add-button-row'><div class='appointment-add-button' onclick='showAddRow()'>+ ADD NEW APPOINTMENT</div></div>`;
     }
 
 	console.log(appointments);
@@ -87,29 +86,29 @@ function searchAppointments() {
  **********************************************************************************************************/
 
 // This function gets called when a user clicks on the Edit button to make items editable
-function editAppointment(id) {
+function editAppointment(appointment_id) {
     //Reset all items
     resetAppointment();
 
     //select all divs whose ids begin with 'student' and end with the current id and make them editable
-    $("div[id^='student-edit'][id$='" + id + "']").each(function () {
-        $(this).attr('contenteditable', true).addClass('student-editable');
+    $("div[id^='appointment-edit'][appointment_id$='" + appointment_id + "']").each(function () {
+        $(this).attr('contenteditable', true).addClass('appointment-editable');
     });
 
-    $("button#btn-student-edit-" + id + ", button#btn-student-delete-" + id).hide();
-    $("button#btn-student-update-" + id + ", button#btn-student-cancel-" + id).show();
-    $("div#student-add-row").hide();
+    $("button#btn-appointment-edit-" + appointment_id + ", button#btn-appointment-delete-" + appointment_id).hide();
+    $("button#btn-appointment-update-" + appointment_id + ", button#btn-appointment-cancel-" + appointment_id).show();
+    $("div#appointment-add-row").hide();
 }
 
-//This function gets called when the user clicks on the Update button to update a student record
-function updateStudent(id) {
-	console.log('update the student whose id is ' + id);
+//This function gets called when the user clicks on the Update button to update an appointment record
+function updateAppointment(appointment_id) {
+	console.log('update the appointment which id is ' + appointment_id);
 }
 
 
-//This function gets called when the user clicks on the Cancel button to cancel updating a student
-function cancelUpdateStudent(id) {
-    showStudents();
+//This function gets called when the user clicks on the Cancel button to cancel updating an appointment
+function cancelUpdateAppointment(appointment_id) {
+    showAppointments();
 }
 
 /***********************************************************************************************************
@@ -117,9 +116,9 @@ function cancelUpdateStudent(id) {
  **********************************************************************************************************/
 
 // This function confirms deletion of an appointment. It gets called when a user clicks on the Delete button.
-function deleteAppointment(id) {
+function deleteAppointment(appointment_id) {
     $('#modal-button-ok').html("Delete").show().off('click').click(function () {
-        removeAppointment(id);
+        removeAppointment(appointment_id);
     });
     $('#modal-button-close').html('Cancel').show().off('click');
     $('#modal-content').html('Are you sure you want to delete the appointment?');
@@ -129,8 +128,8 @@ function deleteAppointment(id) {
 }
 
 // Callback function that removes an appointment from the system. It gets called by the deleteAppointment function.
-function removeAppointment(id) {
-	console.log('remove the appointment whose id is ' + id);
+function removeAppointment(appointment_id) {
+	console.log('remove the appointment which id is ' + appointment_id);
 }
 
 

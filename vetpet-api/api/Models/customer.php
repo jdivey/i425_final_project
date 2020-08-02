@@ -153,8 +153,8 @@ class customer extends Model
     }
 
     //view all pets owned by a customer
-    public static function getPetsByCustomer($customer_id) {
-        $pets = self::findOrfail($customer_id)->pets;
+    public static function getPetsByCustomer($owner_id) {
+        $pets = self::findOrfail($owner_id)->pets;
         return $pets;
     }
 }
