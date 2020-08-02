@@ -151,4 +151,10 @@ class customer extends Model
         $customer = self::find($customer_id);
         return($customer ? $customer->delete() : $customer);
     }
+
+    //view all pets owned by a customer
+    public static function getPetsByCustomer($customer_id) {
+        $pets = self::findOrfail($customer_id)->pets;
+        return $pets;
+    }
 }

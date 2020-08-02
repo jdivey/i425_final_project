@@ -12,11 +12,14 @@ function showCustomers() {
         headers: {"Authorization": "Bearer " + jwt}
     }).done(function (data)  {
         //display all the customers
+        console.log(data);
         displayCustomers(data);
     }).fail(function(xhr, textStatus) {
         let err = {"Code": xhr.status, "Status": xhr.responseJSON.status};
         showMessage('Error', JSON.stringify(err, null, 4));
     });
+
+
 }
 
 
@@ -42,6 +45,8 @@ function displayCustomers(customers) {
             <div class='customer-last-name'>${customer.last_name}</div>
             </div>`;
     }
+
+    console.log(customers);
     //Finally, update the page
     updateMain('Customers', 'All Customers', _html);
 }

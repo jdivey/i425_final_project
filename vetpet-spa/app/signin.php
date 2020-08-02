@@ -22,6 +22,6 @@
                 <img src="img/loading.gif">
             </div>
         </div>
-        <p style="padding-top: 10px;">Don't have an account? <a id="mycollege-signup" href="#signup">Sign up</a></p>
+        <p style="padding-top: 10px;">Don't have an account? <a id="vetpet-signup" href="#signup">Sign up</a></p>
     </div>
 </form>

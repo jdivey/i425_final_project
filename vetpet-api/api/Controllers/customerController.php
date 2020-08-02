@@ -91,4 +91,11 @@ class  CustomerController{
         $results = ['status' => $status];
         return $response->withJson($results, $status_code, JSON_PRETTY_PRINT);
     }
+
+    //view all pets owned by a customer
+    public function viewPets(Request $request, Response $response, array $args) {
+        $customer_id = $args['customer_id'];
+        $results = Customer::getPetsByCustomer($customer_id);
+        return $response->withJson($results, 200, JSON_PRETTY_PRINT);
+    }
 }
