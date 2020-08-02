@@ -22,7 +22,7 @@
     width: 100px;
 }
 
-.student-id, .student-name, .student-email, .student-major, .student-gpa {
+.appointment-id, .pet-id, .appointment-status, .appointment-type, .vet-id {
     margin: 0px 1px;
     padding: 1px;
     border: 1px solid #FFFFFF;

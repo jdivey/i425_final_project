@@ -4,7 +4,7 @@ var role = '';  //user's role: 1 for admins and 2 for regular users
 
 //This function get called when the signin hash is clicked.
 function signin() {
-    $('.img-loading, main, .form-signup, #li-signout, #li-signup').hide();
+    $('main, .form-signup, #li-signout, #li-signup').hide();
     $('.form-signin, #li-signin').show();
     $("li#li-customer > a, li#li-pet > a, li#li-appointment > a").addClass('disabled');
 
@@ -15,7 +15,6 @@ function signin() {
 
 //submit username and password to be verified by the API server
 $('form.form-signin').submit(function (e) {
-	$('.img-loading').show();
 	e.preventDefault();
 	let username = $('#signin-username').val();
 	let password = $('#signin-password').val();

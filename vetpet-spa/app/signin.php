@@ -17,11 +17,7 @@
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="signin-password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <div class="img-loading-container">
-            <div class="img-loading">
-                <img src="img/loading.gif">
-            </div>
-        </div>
+
         <p style="padding-top: 10px;">Don't have an account? <a id="vetpet-signup" href="#signup">Sign up</a></p>
     </div>
 </form>

@@ -5,6 +5,19 @@
 //This function gets called when the Student link in the nav bar is clicked. It shows all the records of students
 function showAppointments() {
 	console.log('Show all appointments');
+    //Constant of the url
+    const url = baseUrl_API + '/api/v1/appointments';
+
+    $.ajax({
+        url: url,
+        headers: {"Authorization": "Bearer " + jwt}
+    }).done(function (data)  {
+        //display all the appointments
+        displayAppointments(data);
+    }).fail(function(xhr, textStatus) {
+        let err = {"Code": xhr.status, "Status": xhr.responseJSON.status};
+        showMessage('Error', JSON.stringify(err, null, 4));
+    });
 }
 
 
@@ -26,15 +39,15 @@ function displayAppointments(appointments, subheading=null) {
     for (let x in appointments) {
         let appointment = appointments[x];
         _html += `<div class='content-row'>
-            <div class='appointment-id'>${student.id}</div>
-            <div class='pet-id' id='student-edit-name-${student.id}'>${student.name}</div> 
-            <div class='appointment-status' id='student-edit-email-${student.id}'>${student.email}</div>
-            <div class='vet-id' id='student-edit-major-${student.id}'>${student.major}</div>`;
+            <div class='appointment-id'>${appointment.appointment_id}</div>
+            <div class='pet-id' id='student-edit-name-${appointment.appointment_id}'>${appointment.pet_id}</div> 
+            <div class='appointment-status' id='student-edit-email-${appointment.appointment_id}'>${appointment.appointment_status}</div>
+            <div class='vet-id' id='student-edit-major-${appointment.appointment_id}'>${appointment.vet_id}</div>`;
         if (role == 1) {
-            _html += `<div class='list-edit'><button id='btn-appointment-edit-${student.id}' onclick=editAppointment('${student.id}') class='btn-light'> Edit </button></div>
-            <div class='list-update'><button id='btn-appointment-update-${student.id}' onclick=updateAppointment('${student.id}') class='btn-light btn-update' style='display:none'> Update </button></div>
-            <div class='list-delete'><button id='btn-appointment-delete-${student.id}' onclick=deleteAppointment('${student.id}') class='btn-light'>Delete</button></div>
-            <div class='list-cancel'><button id='btn-appointment-cancel-${student.id}' onclick=cancelUpdateAppointment('${student.id}') class='btn-light btn-cancel' style='display:none'>Cancel</button></div>`
+            _html += `<div class='list-edit'><button id='btn-appointment-edit-${appointment.id}' onclick=editAppointment('${appointment.id}') class='btn-light'> Edit </button></div>
+            <div class='list-update'><button id='btn-appointment-update-${appointment.id}' onclick=updateAppointment('${appointment.id}') class='btn-light btn-update' style='display:none'> Update </button></div>
+            <div class='list-delete'><button id='btn-appointment-delete-${appointment.id}' onclick=deleteAppointment('${appointment.id}') class='btn-light'>Delete</button></div>
+            <div class='list-cancel'><button id='btn-appointment-cancel-${appointment.id}' onclick=cancelUpdateAppointment('${appointment.id}') class='btn-light btn-cancel' style='display:none'>Cancel</button></div>`
         }
         _html += '</div>';  //end the row
     }
@@ -54,6 +67,8 @@ function displayAppointments(appointments, subheading=null) {
         // add new student button
         _html += `<div class='content-row student-add-button-row'><div class='student-add-button' onclick='showAddRow()'>+ ADD NEW STUDENT</div></div>`;
     }
+
+	console.log(appointments);
     //Finally, update the page
     subheading = (subheading == null) ? 'All Appointments' : subheading;
     updateMain('Appointments', subheading, _html);

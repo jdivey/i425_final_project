@@ -31,8 +31,8 @@ function displayCustomers(customers) {
         <div class='customer-first-name'>First Name</div>
         <div class='customer-last-name'>Last Name</div>
         </div>`;
-    for (let x in customers) {
-        let customer = customers[x];
+    for (let x in customers.data) {
+        let customer = customers.data[x];
         let cssClass = (x % 2 == 0) ? 'content-row' : 'content-row content-row-odd';
         _html += `<div id='content-row-${customer.customer_id}' class='${cssClass}'>
             <div class='customer-id'>
@@ -46,7 +46,7 @@ function displayCustomers(customers) {
             </div>`;
     }
 
-    console.log(customers);
+    console.log(customers.data);
     //Finally, update the page
     updateMain('Customers', 'All Customers', _html);
 }
@@ -61,13 +61,12 @@ function displayCustomers(customers) {
 //Display customers of each pet in a modal
 function showCustomerPets(customer_id) {
     //console.log('show a pet\'s classes');
-    const id = $("span[data-customers=']" + customer_id + "']").html();
     const url = baseUrl_API + '/api/v1/customers/' + customer_id + '/pets';
     $.ajax({
         url: url,
         headers: {"Authorization": " Bearer " + jwt}
     }).done(function(pets) {
-        displayPets(id, pets);
+        displayPets(customer_id, pets);
     }).fail(function(xhr) {
         let err = {"Code": xhr.status, "Status": xhr.responseJSON.status};
         showMessage('Error', JSON.stringify(err, null, 4));
@@ -79,7 +78,7 @@ function showCustomerPets(customer_id) {
 
 // Callback function that displays all pets owned by a customer
 // Parameters: customer's name, an array of Pet objects
-function displayPets(customer, pets) {
+function displayPets(customer_id, pets) {
     let _html = "<div class='class'>No pets were found.</div>";
     if (pets.length > 0) {
         _html = "<table class='class'>" +
@@ -94,8 +93,8 @@ function displayPets(customer, pets) {
             "<th class='pet-last-name'>Last Name</th>" +
             "</tr>";
 
-        for (let x in classes) {
-            let aClass = classes[x];
+        for (let x in pets) {
+            let aClass = pets[x];
             _html += "<tr>" +
                 "<td class='pet-id'>" + aClass.pet_id + "</td>" +
                 "<td class='owner-id'>" + aClass.owner_id + "</td>" +
@@ -111,7 +110,7 @@ function displayPets(customer, pets) {
     }
 
     // set modal title and content
-    $('#modal-title').html("Pets owned by " + customer);
+    $('#modal-title').html("Pets owned by " + customer_id);
     $('#modal-button-ok').hide();
     $('#modal-button-close').html('Close').off('click');
     $('#modal-content').html(_html);
