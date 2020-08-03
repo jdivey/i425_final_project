@@ -60,7 +60,7 @@ function displayCustomers(customers) {
 */
 //Display customers of each pet in a modal
 function showCustomerPets(customer_id) {
-    //console.log('show a pet\'s classes');
+    //console.log('show a customer's\'s pets');
     const url = baseUrl_API + '/api/v1/customers/' + customer_id + '/pets';
     $.ajax({
         url: url,

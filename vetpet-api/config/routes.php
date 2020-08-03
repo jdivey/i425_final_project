@@ -48,6 +48,8 @@ $app->group('/api/v1', function () {
         $this->get('', 'Customer:index');
         //$this->get('', 'Customer:paginate');
         $this->get('/{customer_id}', 'Customer:view');
+        $this->get('/{customer_id}/pets', 'Customer:viewPets');
+        //$this->get('/{customer_id}/pets/{customer_id}', 'Pet:view');
         $this->post('', 'Customer:create');
         $this->put('/{customer_id}', 'Customer:update');
         $this->delete('/{customer_id}', 'Customer:delete');

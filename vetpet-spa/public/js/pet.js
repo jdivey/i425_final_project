@@ -34,8 +34,10 @@ function displayPets(response) {
         "<div class='pet-first-name'>First Name</div>" +
         "<div class='pet-last-name'>Last Name</div>" +
         "</div>";
-    pets = response.data;
+    pets = response;
+    console.log(response);
     pets.forEach(function(pet, x){
+
         let cssClass = (x % 2 == 0) ? 'content-row' : 'content-row content-row-odd';
         _html += "<div class='" + cssClass + "'>" +
             "<div class='pet-id'>" +
@@ -43,8 +45,7 @@ function displayPets(response) {
             "</div>" +
             "<div class='owner-id'>" + pet.owner_id + "</div>" +
             "<div class='pet-type'>" + pet.pet_type + "</div>" +
-            "<div class='pet-breed'>" + pet.pet_breed + "</div>" +
-            "</div>";
+            "<div class='pet-breed'>" + pet.pet_breed + "</div>";
     });
 
     console.log(pets);
