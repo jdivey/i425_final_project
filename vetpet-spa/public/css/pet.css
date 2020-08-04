@@ -1,7 +1,15 @@
 /*
 *  styles for pet-related elements
 */
-
+.class {
+    font-size: 0.9em;
+}
+.class th {
+    background-color: #eeeeee;
+}
+.class td, .class th {
+    padding: 5px 2px;
+}
 
 .pet-id{
     width: 130px
@@ -71,4 +79,10 @@
     display: inline-block;
     text-align: center;
     margin-right: 5px;
+}
+
+.pet-id, .owner-id, .pet-type, .pet-breed, .pet-sex {
+    margin: 0px 1px;
+    padding: 1px;
+    border: 1px solid #FFFFFF;
 }

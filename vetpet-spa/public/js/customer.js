@@ -55,18 +55,19 @@ function displayCustomers(customers) {
 /***********************************************************************************************************
  ******                            Show Pets of Customers                              ******
  **********************************************************************************************************/
-/* Display classes taught by a professor. It get called when a user clicks on a professor's name in
- * the professor list. The parameter is the professor's id.
+/* Display pets owned by the customers. It get called when a user clicks on a customer's id in
+ * the customer list. The parameter is the customer's id.
 */
 //Display customers of each pet in a modal
 function showCustomerPets(customer_id) {
     //console.log('show a customer's\'s pets');
+    const custNum = $("span[data-customers=']" + customer_id + "']").html();
     const url = baseUrl_API + '/api/v1/customers/' + customer_id + '/pets';
     $.ajax({
         url: url,
         headers: {"Authorization": " Bearer " + jwt}
     }).done(function(pets) {
-        displayPets(customer_id, pets);
+       // displayPets(custNum, pets);
     }).fail(function(xhr) {
         let err = {"Code": xhr.status, "Status": xhr.responseJSON.status};
         showMessage('Error', JSON.stringify(err, null, 4));
@@ -78,7 +79,7 @@ function showCustomerPets(customer_id) {
 
 // Callback function that displays all pets owned by a customer
 // Parameters: customer's name, an array of Pet objects
-function displayPets(customer_id, pets) {
+function displayPets(customer, pets) {
     let _html = "<div class='class'>No pets were found.</div>";
     if (pets.length > 0) {
         _html = "<table class='class'>" +
@@ -110,7 +111,7 @@ function displayPets(customer_id, pets) {
     }
 
     // set modal title and content
-    $('#modal-title').html("Pets owned by " + customer_id);
+    $('#modal-title').html("Pets owned by " + customer);
     $('#modal-button-ok').hide();
     $('#modal-button-close').html('Close').off('click');
     $('#modal-content').html(_html);

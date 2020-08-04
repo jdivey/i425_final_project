@@ -5,7 +5,7 @@
 function showPets () {
 	console.log('show all pets');
     //Constant of the url
-    const url = baseUrl_API + '/api/v1/pets';
+/*    const url = baseUrl_API + '/api/v1/pets';
 
     $.ajax({
         url: url,
@@ -16,7 +16,7 @@ function showPets () {
     }).fail(function(xhr, textStatus) {
         let err = {"Code": xhr.status, "Status": xhr.responseJSON.status};
         showMessage('Error', JSON.stringify(err, null, 4));
-    });
+    });*/
 }
 
 
@@ -34,7 +34,7 @@ function displayPets(response) {
         "<div class='pet-first-name'>First Name</div>" +
         "<div class='pet-last-name'>Last Name</div>" +
         "</div>";
-    pets = response;
+    pets = response.data;
     console.log(response);
     pets.forEach(function(pet, x){
 
@@ -60,9 +60,9 @@ function displayPets(response) {
 /* Display a pet's details. It get called when a user clicks on a course's number in
  * the pet list. The parameter is the pet id.
 */
-function showPet(customer_id) {
+function showPet(pet_id) {
     console.log('get pet details');
-    const url = baseUrl_API + '/api/v1/customers/' + customer_id + '/pets';
+   /* const url = baseUrl_API + '/api/v1/customers/' + customer_id + '/pets';
     $.ajax({
         url: url,
         headers: {"Authorization": " Bearer " + jwt}
@@ -71,7 +71,7 @@ function showPet(customer_id) {
     }).fail(function(xhr) {
         let err = {"Code": xhr.status, "Status": xhr.responseJSON.status};
         showMessage('Error', JSON.stringify(err, null, 4));
-    });
+    });*/
 }
 
 
@@ -89,7 +89,7 @@ function displayPet(pet_id, response) {
 
     $('#pet-detail-' + pet_id).html(_html);
     $("[id^='pet-detail-']").each(function(){   //hide the visible one
-        $(this).not("[pet_id*='" + pet_id + "']").hide();
+        $(this).not("[customer_id*='" + pet_id + "']").hide();
     });
 
     $('#pet-detail-' + pet_id).toggle();
