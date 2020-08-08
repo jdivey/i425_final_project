@@ -14,33 +14,39 @@ function signin() {
 }
 
 //submit username and password to be verified by the API server
-$('form.form-signin').submit(function (e) {
+$('form.form-signin').submit(async function (e) {
 	e.preventDefault();
 	let username = $('#signin-username').val();
 	let password = $('#signin-password').val();
+    try {
+        const result = await verifyUser(username, password);
 
-	//url to the api server
-	const url = baseUrl_API + '/api/v1/users/authJWT';
+        //hide the loading image
+        $('.img-loading').hide();
 
-	$.ajax({
-		url: url,
-		type: 'POST',
-		dataType: 'json',
-		data: {username: username, password: password}
-	}).done(function(data) {
-		$('.img-loading').hide();
-		jwt = data.jwt;
-		role = data.role;
+        //update jwt and role
+        jwt = result.jwt;
+        role = result.role;
 
-		//user has been successfully signed in, enable all the links in the nav bar, hide sign-in link and show sign-out link
-		$('a.nav-link.disabled').removeClass('disabled'); //this code enables all the links in the nav bar
-		$('li#li-signin').hide(); //this will hide the signin link
-		$('li#li-signout').show(); //show the signout link
-		showMessage('Signin Messsage', 'You have successfully signed in.  Click on the links in the nav bar to explore the site.');
+        //enable all links in nav bar, hide sign in and show signout links
+        $('a.nav-link.disabled').removeClass('disabled');
 
-	}).fail(function(jqXHR, textStatus) {
-		showMessage('Signin Error', JSON.stringify(jqXHR.responseJSON, null, 4))
-	}).always(function() {
-		//run code regardless if request is successful or failed.
-	})
+        //display a message after a successful signin
+        showMessage("Signin Message", "You have successfully signed in.  Click on the links in the nav bar to explore the site.");
+    }catch (e) {
+        showMessage("Signin Error", JSON.stringify(e.responseJSON, null, 4))
+    }
 });
+
+//verify username and password
+function verifyUser(username, password) {
+    //url to the api server
+    const url = baseUrl_API + '/api/v1/users/authJWT';
+
+    return $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: {username: username, password: password}
+    })
+}

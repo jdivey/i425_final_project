@@ -1,40 +1,40 @@
 /*
 *  styles for pet-related elements
 */
-.class {
+.pet {
     font-size: 0.9em;
 }
-.class th {
+.pet th {
     background-color: #eeeeee;
 }
-.class td, .class th {
+.pet td, .pet th {
     padding: 5px 2px;
 }
 
-.pet-id{
+.pet-pet-id{
     width: 130px
 }
 
-.owner-id {
+.pet-owner-id {
     width: 400px
 }
 
-.pet-type {
+.pet-pet-type {
     width: 150px
 }
 
-.pet-breed {
+.pet-pet-breed {
     width: 200px
 }
 
 
-.pet-sex {
+.pet-pet-sex {
     margin: 20px 0px;
     display: flex;
     flex-direction: column;
 }
 
-.pet-birthday {
+.pet-pet-birthday {
     border-top: #b7d2ff solid 1px;
     border-bottom: #b7d2ff solid 1px;
     margin-bottom: -1px;
@@ -42,7 +42,7 @@
     flex-direction: row;
 }
 
-.pet-first-name {
+.pet-pet-first-name {
     padding: 3px 10px;
     min-width: 120px;
     text-align: right;
@@ -51,7 +51,7 @@
     align-items: normal;
 }
 
-.pet-last-name{
+.pet-pet-last-name{
     padding: 3px 10px;
     align-items: normal;
 }

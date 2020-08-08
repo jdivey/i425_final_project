@@ -2,22 +2,19 @@
  ******                            CRUD Appointments                                                     ******
  **********************************************************************************************************/
 
-//This function gets called when the Student link in the nav bar is clicked. It shows all the records of students
+//This function gets called when the Student link in the nav bar is clicked. It shows all the records of appointments
 function showAppointments() {
-	console.log('Show all appointments');
+	//console.log('Show all appointments');
     //Constant of the url
     const url = baseUrl_API + '/api/v1/appointments';
 
-    $.ajax({
-        url: url,
+    fetch(url, {
+        method: "GET",
         headers: {"Authorization": "Bearer " + jwt}
-    }).done(function (data)  {
-        //display all the appointments
-        displayAppointments(data);
-    }).fail(function(xhr, textStatus) {
-        let err = {"Code": xhr.status, "Status": xhr.responseJSON.status};
-        showMessage('Error', JSON.stringify(err, null, 4));
-    });
+    }).then(checkFetch) //check for errors
+        .then(response => response.json()) //extract the json from the response
+        .then(appointments => displayAppointments(appointments)) //display appointments
+        .catch(err => showMessage("Error", err)) //display errors
 }
 
 
@@ -77,7 +74,29 @@ function displayAppointments(appointments, subheading=null) {
  ******                            Search Appointments                                                   ******
  **********************************************************************************************************/
 function searchAppointments() {
-   console.log('searching for appointments');
+   //console.log('searching for appointments');
+    let term = $("#search-term").val();
+    const url = baseUrl_API + "/api/v1/appointments?q=" + term;
+
+    //update the subheading according to the term
+    let subheading = '';
+    if(term == '') { //the search box is empty
+        subheading = "All Appointments";
+
+    } else if (isNaN(term)) { //the search term is not a number
+        subheading = 'Appointments containing "' + term + '"';
+    } else { //the search term is a number
+        subheading = 'Student whose GPA is >= ' + term;
+    }
+
+    fetch(url, {
+        method: 'GET',
+        headers: {"Authorization": "Bearer" + jwt}
+    })
+        .then(checkFetch) //check for errors
+        .then(response => response.json()) //extract the json from the response
+        .then(appointments => displayAppointments(appointments, subheading)) //display appointments
+        .catch(err => showMessage("Error", err)) //display errors
 }
 
 
@@ -102,7 +121,28 @@ function editAppointment(appointment_id) {
 
 //This function gets called when the user clicks on the Update button to update an appointment record
 function updateAppointment(appointment_id) {
-	console.log('update the appointment which id is ' + appointment_id);
+	//console.log('update the appointment which id is ' + appointment_id);
+    let data = {};
+    //select all divs whose ids begin with appointment-edit, and with the current id
+    //extract appointment details from the div blocks and create a JSON object
+    $("div[id^='appointment-edit-'][id$= '" + appointment_id + "']").each(function () {
+        let field = $(this).attr('id').split('-')[2]; //the second part of the ID is the field name
+        let value = $(this).html(); //content fo the div
+        data[field] = value;
+    })
+
+    //make fetch request to update the student
+    const  url = baseUrl_API + "/api/v1/appointments/" + appointment_id;
+    fetch(url, {
+        method: "PUT",
+        headers: {"Authorization": "Bearer" + jwt,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+        .then(checkFetch)
+        .then(() => resetAppointment())  //reset appointments
+        .catch(err => showMessage("Errors", err))
 }
 
 
@@ -129,7 +169,15 @@ function deleteAppointment(appointment_id) {
 
 // Callback function that removes an appointment from the system. It gets called by the deleteAppointment function.
 function removeAppointment(appointment_id) {
-	console.log('remove the appointment which id is ' + appointment_id);
+	//console.log('remove the appointment which id is ' + appointment_id);
+    let url = baseUrl_API + '/api/v1/appointments/' + appointment_id;
+    fetch(url, {
+        method: "DELETE",
+        headers: {"Authorization": "Bearer" + jwt}
+    })
+        .then(checkFetch)
+        .then(() => showAppointments()) //reload the appointments
+        .catch(err => showMessage("Errors", err))
 }
 
 
@@ -145,7 +193,30 @@ function showAddRow() {
 
 //This function inserts a new appointment. It gets called when a user clicks on the Insert button.
 function addAppointment() {
-	console.log('Add a new appointment');
+	//console.log('Add a new appointment');
+    let data = {};
+
+    //retrieve new appointment details and create a json object
+    $("div[id^= 'appointment-new-']").each(function () {
+        let field = $(this).attr('id').substr(12); //the last part of an id is the field name.  There are 12 characters before the field name
+        let value = $(this).html(); //content of the div
+        data[field] =value;
+    })
+
+    //send the request via fetch
+    const url = baseUrl_API + '/api/v1/appointments';
+    fetch(url, {
+        method: "POST",
+        headers: {"Authorization": "Bearer" + jwt,
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+
+    })
+        .then(checkFetch)
+        .then(() => showAppointments()) //reload the appointment list
+        .catch(err => showMessage("Errors", err))
 }
 
 

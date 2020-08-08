@@ -22,9 +22,7 @@
         <input type="password" id="signup-password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
         <div class="img-loading-container">
-            <div class="img-loading">
-                <img src="img/loading.gif">
-            </div>
+
         </div>
         <p style="padding-top: 10px;">Already have an account? <a id="petvet-signin" href="#signin">Sign in</a></p>
     </div>
