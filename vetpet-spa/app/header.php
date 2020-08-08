@@ -32,7 +32,7 @@
 
 <header>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary"">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-danger">
         <div class="container">
             <a class="navbar-brand" href="#home" style="color:#ffffff; font-weight: bold">&nbsp;VetPet</a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse"
