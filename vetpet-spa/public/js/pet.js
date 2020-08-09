@@ -26,7 +26,7 @@ function showPets (offset = 0) {
 
 //Callback function: display all pets; The parameter is a promise returned by axios request.
 function displayPets(response) {
-    console.log('displayPets method called.');
+    console.log(response);
 
     let _html;
     _html =
@@ -41,6 +41,7 @@ function displayPets(response) {
         "<div class='pet-last-name'>Last Name</div>" +
         "</div>";
     pets = response.data;
+    console.log(pets);
     pets.forEach(function(pet, x){
         let cssClass = (x % 2 == 0) ? 'content-row' : 'content-row content-row-odd';
         _html += "<div class='" + cssClass + "'>" +

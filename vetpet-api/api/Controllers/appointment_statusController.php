@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use VetPetAPI\Models\Appointment_status;
 use VetPetAPI\Validation\Validator;
 
-class  appointment_statusController{
+class  Appointment_statusController{
     //list all appointments
     public function index(Request $request, Response $response, array $args) {
         //get query string variables from url
