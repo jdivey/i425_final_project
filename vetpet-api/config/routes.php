@@ -38,28 +38,23 @@ $app->group('/api/v1', function () {
     $this->group('/pets', function () {
         $this->get('', "Pet:index");
         $this->get('/{pet_id}', 'Pet:view');
-       $this->get('/{pet_id}/appointments/{appointment_id}', 'Appointment:view');
+       $this->get('/{pet_id}/vets/', 'Pet:viewVets');
+
     });
 
     //the customer group
     $this->group('/customers', function () {
         $this->get('', 'Customer:index');
-        //$this->get('', 'Customer:paginate');
         $this->get('/{customer_id}', 'Customer:view');
         $this->get('/{customer_id}/pets', 'Customer:viewPets');
-        //$this->get('/{customer_id}/pets/{customer_id}', 'Pet:view');
-        $this->post('', 'Customer:create');
-        $this->put('/{customer_id}', 'Customer:update');
-        $this->delete('/{customer_id}', 'Customer:delete');
+        $this->get('/{customer_id}/pets/{pet_id}', 'Pet:view');
+
     });
 
     //the vet group
     $this->group('/vets', function () {
         $this->get('', 'Vet:index');
         $this->get('/{vet_id}', 'Vet:view');
-        $this->post('', 'Vet:create');
-        $this->put('/{vet_id}', 'Vet:update');
-        $this->delete('/{vet_id}', 'Vet:delete');
     });
 
     //the appointment group

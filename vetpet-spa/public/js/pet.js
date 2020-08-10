@@ -5,7 +5,7 @@
 function showPets (offset = 0) {
 
     let limit = ($('#pet-limit-select').length) ? $('#pet-limit-select option:checked').val() : 5;
-    let sort = ($('#pet-sort-select').length) ? $('#pet-sort-select option:checked').val() : 'number:asc';
+    let sort = ($('#pet-sort-select').length) ? $('#pet-sort-select option:checked').val() : 'pet_id:asc';
     //construct the url that includes limit, offset, and sort variables
     let url = baseUrl_API + '/api/v1/pets?limit=' + limit + "&offset=" + offset + "&sort=" + sort;
 
@@ -15,6 +15,7 @@ function showPets (offset = 0) {
         cache: true,
         headers: {"Authorization": "Bearer" + jwt}
     }).then(function(response) {
+
         displayPets(response.data);
     }).catch(function(error) {
         handleAxiosError(error);
@@ -58,7 +59,7 @@ function displayPets(response) {
     });
 
     //add a div block for pagination links and selection lists for limiting and sorting courses
-    _html += "<div class = 'pet-row pet-pagination'></div>";
+    _html += "<div class = 'content-row pet-pagination'></div>";
 
     //pagination
     _html += paginatePets(response);
@@ -129,6 +130,7 @@ function displayPet(pet_id, response) {
  */
 
 function handleAxiosError(error) {
+
     let errMessage;
     if (error.response) {
         ////the request was made and the server responded with a status code of 400 or 500.

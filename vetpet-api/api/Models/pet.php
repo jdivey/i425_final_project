@@ -27,9 +27,9 @@ class Pet extends Model
     //if the created at and updated at columns are not used
     public $timestamps = false;
 
-    //set the one to many relation between Pet and Appointment
-    public function appointments() {
-        return $this->hasMany('VetPetAPI\Models\appointment_status', 'pet_id');
+    //set the one to many relation between Pet and vet
+    public function vets() {
+        return $this->hasMany('VetPetAPI\Models\Appointment_status', 'pet_id');
     }
 
     //retrieve all pets
@@ -49,7 +49,7 @@ class Pet extends Model
         $sort_key_array = self::getSortKeys($request);
 
         //build query
-        $query = self::with('appointments'); //build the query to get all the course
+        $query = self::with('vets'); //build the query to get all the vets
         $query = $query->skip($offset)->take($limit); //limit the rows
 
         //sort the output by one or more columns
@@ -79,10 +79,10 @@ class Pet extends Model
         return $pet;
     }
 
-    //view all appointments of a pet
-    public static function getAppointmentsByPet($pet_id) {
-        $appointments = self::findOrfail($pet_id)->appointments;
-        return $appointments;
+    //view all vets of a pet
+    public static function getVetsByPet($pet_id) {
+        $vets = self::findOrfail($pet_id)->vets;
+        return $vets;
     }
 
 

@@ -17,6 +17,7 @@ use VetPetAPI\Validation\Validator;
 class  PetController{
         //list all pets
         public function index(Request $request, Response $response, array $args) {
+
             $results = Pet::getPets($request);
             return $response->withJson($results, 200, JSON_PRETTY_PRINT);
 
@@ -29,9 +30,9 @@ class  PetController{
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
     }
 
-    //view appointment of a pet
-    public function viewAppointments(Request $request, Response $response, array $args) {
-        $results = Pet::getAppointmentsByPet($args['pet_id']);
+    //view vet of a pet
+    public function viewVets(Request $request, Response $response, array $args) {
+        $results = Pet::getVetsByPet($args['pet_id']);
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
     }
 

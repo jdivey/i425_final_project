@@ -28,20 +28,9 @@ class Appointment_status extends Model
     //if the created at and updated at columns are not used
     public $timestamps = false;
 
-    //set up the relation between Class and Course and class belongs to a course
-    public function pet() {
-        return $this->belongsTo('VetPetAPI\Models\Pet', 'pet_id');
-    }
-
-    //set up the relation between a class and professor, a class belongs to a professor
-    public function customer() {
-        return $this->belongsTo('VetPetAPI\Models\Customer', 'customer_id');
-    }
-
     //retrieve all appointments
     public static function getAppointments() {
-        $appointments = self::with(['customer', 'pet'])->get();
-        return $appointments;
+        return self::all();
     }
 
     //view a specific appointment by id

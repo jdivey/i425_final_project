@@ -152,16 +152,16 @@ class customer extends Model
         return($customer ? $customer->delete() : $customer);
     }
 
-    //set the one to many relation between customer and appointments
+    //set the one to many relation between customer and pet
     //the first of parameter is the pet id, the second parameter is the foreign key
-    public function appointments() {
-        return $this->hasMany('VetPetAPI\Models\Appointment', 'customer_id');
+    public function pets() {
+        return $this->hasMany('VetPetAPI\Models\Pet', 'owner_id');
     }
 
 
-    //view all appointments of a customer
-    public static function AppointmentsByCustomer($customer_id) {
-        $appointments = self::findOrfail($customer_id)->appointments;
-        return $appointments;
+    //view all pets owned by a customer
+    public static function getPetsByCustomer($customer_id) {
+        $pets = self::findOrfail($customer_id)->pets;
+        return $pets;
     }
 }

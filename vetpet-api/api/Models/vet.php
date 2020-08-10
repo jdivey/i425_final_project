@@ -27,81 +27,30 @@ class Vet extends Model
     //if the created at and updated at columns are not used
     public $timestamps = false;
 
+    //set up the relation between Class and Course and class belongs to a course
+    public function pet() {
+        return $this->belongsTo('VetPetAPI\Models\Pet', 'pet');
+    }
 
+    //set up the relation between a class and professor, a class belongs to a professor
+    public function customer() {
+        return $this->belongsTo('VetPetAPI\Models\Customer', 'customer');
+    }
 
 
     //retrieve all vets
     public static function getVets() {
-        $vets = self::all();
+        $vets = self::with(['customer', 'pet'])->get();
         return $vets;
     }
 
     //retrieve a specific vet
     public static function getVetById($vet_id) {
         $vet = self::findOrfail($vet_id);
+        $vet->load('customer')->load('pet');
         return $vet;
     }
 
-    //search for a vet
-    public static function searchVets($term) {
-        if (is_numeric($term)) {
-            $query = self::where('vet_id', '>=', $term);
-        }else{
-            $query = self::where('first_name', 'like', "%$term%")
-                ->orWhere('last_name', 'like', "%$term%");
-        }
 
-        return $query->get();
-    }
-
-    //insert new vet
-    public static function createVet($request) {
-        //retrieve parameters from request body
-        $params = $request->getParsedBody();
-
-        //create a new vet instance
-        $vet = new Vet();
-
-        //set the vet's attributes
-        foreach ($params as $field => $value) {
-            //echo $field, ':', $value;
-            $vet->$field = $value;
-        }
-
-        //insert the vet into the database
-        $vet->save();
-
-        return $vet;
-    }
-
-    //update a vet
-    public static function updateVet($request) {
-        //retrieve parameters from request body
-        $params = $request->getParsedBody();
-
-        //retrieve id from the request body
-        $vet_id = $request->getAttribute('vet_id');
-        $vet = self::find($vet_id);
-        if (!$vet) {
-            return false;
-        }
-
-        //update attributes of the vet
-        foreach ($params as $field => $value) {
-            $vet->$field = $value;
-        }
-
-        //save the student into the database
-        $vet->save();
-        return $vet;
-    }
-
-    //delete a vet
-    public static function deleteVet($request) {
-        //retrieve the id from the request
-        $vet_id = $request->getAttribute('vet_id');
-        $vet = self::find($vet_id);
-        return($vet ? $vet->delete() : $vet);
-    }
 
 }
