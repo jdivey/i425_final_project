@@ -3,7 +3,7 @@
  **********************************************************************************************************/
 //This function shows all pets. It gets called when a user clicks on the Pet link in the nav bar.
 function showPets (offset = 0) {
-	//console.log('show all pets');
+
     let limit = ($('#pet-limit-select').length) ? $('#pet-limit-select option:checked').val() : 5;
     let sort = ($('#pet-sort-select').length) ? $('#pet-sort-select option:checked').val() : 'number:asc';
     //construct the url that includes limit, offset, and sort variables
@@ -15,9 +15,7 @@ function showPets (offset = 0) {
         cache: true,
         headers: {"Authorization": "Bearer" + jwt}
     }).then(function(response) {
-        console.log("response");
         displayPets(response.data);
-
     }).catch(function(error) {
         handleAxiosError(error);
     })

@@ -8,6 +8,7 @@
 
 namespace VetPetAPI\Controllers;
 
+use VetPetAPI\Models\Appointment_status;
 use VetPetAPI\Validation\Validator;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -93,9 +94,9 @@ class  CustomerController{
     }
 
     //view all pets owned by a customer
-    public function viewPets(Request $request, Response $response, array $args) {
+    public function viewAppointments(Request $request, Response $response, array $args) {
         $customer_id = $args['customer_id'];
-        $results = Customer::getPetsByCustomer($customer_id);
+        $results = Appointment_status::getAppointmentsByCustomer($customer_id);
         return $response->withJson($results, 200, JSON_PRETTY_PRINT);
     }
 }

@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="css/index.css" >
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/customer.css">
-    <link rel="stylesheet" href="css/class.css">
     <link rel="stylesheet" href="css/pet.css">
     <link rel="stylesheet" href="css/appointment.css">
     <link rel="stylesheet" href="css/signin.css">

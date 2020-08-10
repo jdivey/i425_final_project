@@ -29,41 +29,8 @@
             return empty(self::$errors);
         }
 
-        //validate attributes of a vet object
-        public static function validateVet($request) {
-            //define all the Validation rules
-            $rules = [
-                'vet_id' => v::notEmpty()->alnum()->length(9, 9),
-                'first_name' => v::alnum(' '),
-                'last_name' =>  v::alnum(' ')
-            ];
 
-            return self::validate($request, $rules);
-        }
 
-        //validate attributes of a pet object
-        public static function validatePet($request) {
-            //define all the Validation rules
-            $rules = [
-                'pet_id' => v::notEmpty()->alnum()->length(9, 9),
-                'first_name' => v::alnum(' '),
-                'last_name' =>  v::alnum(' ')
-            ];
-
-            return self::validate($request, $rules);
-        }
-
-        //validate attributes of a customer object
-        public static function validateCustomer($request) {
-            //define all the Validation rules
-            $rules = [
-                'customer_id' => v::notEmpty()->alnum()->length(9, 9),
-                'first_name' => v::alnum(' '),
-                'last_name' =>  v::alnum(' ')
-            ];
-
-            return self::validate($request, $rules);
-        }
 
         //validate attributes of an appointment object
         public static function validateAppointment($request) {

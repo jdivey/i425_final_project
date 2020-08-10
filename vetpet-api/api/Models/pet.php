@@ -27,82 +27,116 @@ class Pet extends Model
     //if the created at and updated at columns are not used
     public $timestamps = false;
 
+    //set the one to many relation between Pet and Appointment
+    public function appointments() {
+        return $this->hasMany('VetPetAPI\Models\appointment_status', 'pet_id');
+    }
+
     //retrieve all pets
-    public static function getPets() {
-        $pets = self::all();
-        return $pets;
+    public static function getPets($request) {
+        $count = self::count();
+
+        //get query string variables from url
+        //do limit and offset exist?
+        $params = $request->getQueryParams();
+        $limit = array_key_exists('limit', $params) ? (int)$params['limit']: 10; //items per page
+        $offset = array_key_exists('offset', $params) ? (int)$params['offset']: 0; //offset of the first item
+
+        //pagination
+        $links = self::getLinks($request, $limit, $offset);
+
+        //sorting
+        $sort_key_array = self::getSortKeys($request);
+
+        //build query
+        $query = self::with('appointments'); //build the query to get all the course
+        $query = $query->skip($offset)->take($limit); //limit the rows
+
+        //sort the output by one or more columns
+        foreach ($sort_key_array as $column => $direction) {
+            $query->orderBy($column, $direction);
+        }
+
+        $pets = $query->get(); //finally run the query and get the results
+
+        //construct the data for response
+        $results = [
+            'totalCount' => $count,
+            'limit' => $limit,
+            'offset' => $offset,
+            'links' => $links,
+            'sort' => $sort_key_array,
+            'data' => $pets
+        ];
+
+        return $results;
     }
 
     //retrieve a specific pet
     public static function getPetById($pet_id) {
         $pet = self::findOrfail($pet_id);
+        $pet->load('appointments');
         return $pet;
     }
 
-    //search for a pet
-    public static function searchPets($term) {
-        if (is_numeric($term)) {
-                $query = self::where('owner_id', '>=', $term);
-        }else{
-            $query = self::where('pet_id', '>=', $term)
-                ->orWhere('pet_breed', 'like', "%$term%")
-                ->orWhere('pet_sex', 'like', "%$term%")
-                ->orWhere('pet_birthday', 'like', "%$term%")
-                ->orWhere('first_name', 'like', "%$term%")
-                ->orWhere('last_name', 'like', "%$term%");
-        }
-
-        return $query->get();
+    //view all appointments of a pet
+    public static function getAppointmentsByPet($pet_id) {
+        $appointments = self::findOrfail($pet_id)->appointments;
+        return $appointments;
     }
 
-    //insert new pet
-    public static function createPet($request) {
-        //retrieve parameters from request body
-        $params = $request->getParsedBody();
 
-        //create a new pet instance
-        $pet = new Pet();
+// This function returns an array of links for pagination. The array includes links for the current, first, next, and last pages.
+    private static function getLinks($request, $limit, $offset) {
+        $count = self::count();
 
-        //set the pet's attributes
-        foreach ($params as $field => $value) {
+        // Get request uri and parts
+        $uri = $request->getUri();
+        $base_url = $uri->getBaseUrl();
+        $path = $uri->getPath();
 
-            $pet->$field = $value;
+        // Construct links for pagination
+        $links = array();
+        $links[] = ['rel' => 'self', 'href' => $base_url . "/" . $path . "?limit=$limit&offset=$offset"];
+        $links[] = ['rel' => 'first', 'href' => $base_url . "/" . $path . "?limit=$limit&offset=0"];
+        if ($offset - $limit >= 0) {
+            $links[] = ['rel' => 'prev', 'href' => $base_url . "/" . $path . "?limit=$limit&offset=" . ($offset - $limit)];
         }
+        if ($offset + $limit < $count) {
+            $links[] = ['rel' => 'next', 'href' => $base_url . "/" . $path . "?limit=$limit&offset=" . ($offset + $limit)];
+        }
+        $links[] = ['rel' => 'last', 'href' => $base_url . "/" . $path . "?limit=$limit&offset=" . $limit * (ceil($count / $limit) - 1)];
 
-        //insert the pet into the database
-        $pet->save();
-
-        return $pet;
+        return $links;
     }
 
-    //update a pet
-    public static function updatePet($request) {
-        //retrieve parameters from request body
-        $params = $request->getParsedBody();
 
-        //retrieve id from the request body
-        $pet_id = $request->getAttribute('pet_id');
-        $pet = self::find($pet_id);
-        if (!$pet) {
-            return false;
+    //Sort keys are optionally enclosed in [ ], separated with commas;
+    // Sort directions can be optionally appended to each sort key, separated by :.
+    // Sort directions can be 'asc' or 'desc' and defaults to 'asc'.
+    // Examples: sort=[number:asc,title:desc], sort=[number, title:desc]
+    // This function retrieves sorting keys from uri and returns an array.
+
+    private static function getSortKeys($request) {
+        $sort_key_array = array();
+
+        // Get querystring variables from url
+        $params = $request->getQueryParams();
+
+        if (array_key_exists('sort', $params)) {
+            $sort = preg_replace('/^\[|\]$|\s+/', '', $params['sort']);  // remove white spaces, [, and ]
+            $sort_keys = explode(',', $sort); //get all the key:direction pairs
+            foreach ($sort_keys as $sort_key) {
+                $direction = 'asc';
+                $column = $sort_key;
+                if (strpos($sort_key, ':')) {
+                    list($column, $direction) = explode(':', $sort_key);
+                }
+                $sort_key_array[$column] = $direction;
+            }
         }
 
-        //update attributes of the pet
-        foreach ($params as $field => $value) {
-            $pet->$field = $value;
-        }
-
-        //save the pet into the database
-        $pet->save();
-        return $pet;
-    }
-
-    //delete a pet
-    public static function deletePet($request) {
-        //retrieve the id from the request
-        $pet_id = $request->getAttribute('pet_id');
-        $pet = self::find($pet_id);
-        return($pet ? $pet->delete() : $pet);
+        return $sort_key_array;
     }
 
 }
