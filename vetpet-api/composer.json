@@ -1,7 +1,7 @@
 {
     "require": {
         "slim/slim": "3.*",
-        "illuminate/database": "~5.7",
+        "illuminate/database": "~6.20",
         "respect/validation": "^2.0",
         "firebase/php-jwt": "^5.2",
         "google/apiclient": "^2.0"
